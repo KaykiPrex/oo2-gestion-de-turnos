@@ -8,7 +8,7 @@ public class Turno {
 	private LocalDateTime date;
 	private Cliente cliente;
 	private Profesional profesional;
-	private Servicio servicio;
+	private Servicio  servicio;
 
 	public Turno(LocalDateTime date, Cliente cliente, Profesional profesional, Servicio servicio) {
 		this.date = date;
