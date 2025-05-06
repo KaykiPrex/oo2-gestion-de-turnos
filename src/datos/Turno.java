@@ -3,17 +3,22 @@ package datos;
 import java.time.LocalDateTime;
 
 public class Turno {
+
 	private long id;
 	private LocalDateTime date;
 	private Cliente cliente;
 	private Profesional profesional;
 	private Servicio servicio;
-	
+
 	public Turno(LocalDateTime date, Cliente cliente, Profesional profesional, Servicio servicio) {
 		this.date = date;
 		this.cliente = cliente;
 		this.profesional = profesional;
 		this.servicio = servicio;
+	}
+	@Override
+	public String toString() {
+		return "Turno{" + "fechaHora=" + date + ", servicio='" + servicio +"profesional"+ profesional + '}';
 	}
 
 	public long getId() {
