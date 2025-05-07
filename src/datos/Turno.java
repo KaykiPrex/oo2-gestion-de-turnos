@@ -4,28 +4,32 @@ import java.time.LocalDateTime;
 
 public class Turno {
 	private long id;
-	private LocalDateTime date;
+	private Disponibilidad disponibilidad;
 	private Cliente cliente;
 	private Profesional profesional;
 	private Servicio servicio;
-	
-	public Turno(LocalDateTime date, Cliente cliente, Profesional profesional, Servicio servicio) {
-		this.date = date;
-		this.cliente = cliente;
-		this.profesional = profesional;
+
+	public Turno(Servicio servicio, Profesional profesional, Cliente cliente, Disponibilidad disponibilidad) {
 		this.servicio = servicio;
+		this.profesional = profesional;
+		this.cliente = cliente;
+		this.disponibilidad = disponibilidad;
 	}
 
 	public long getId() {
 		return id;
 	}
 
-	public LocalDateTime getDate() {
-		return date;
+	public void setId(long id) {
+		this.id = id;
 	}
 
-	public void setDate(LocalDateTime date) {
-		this.date = date;
+	public Disponibilidad getDisponibilidad() {
+		return disponibilidad;
+	}
+
+	public void setDisponibilidad(Disponibilidad disponibilidad) {
+		this.disponibilidad = disponibilidad;
 	}
 
 	public Cliente getCliente() {

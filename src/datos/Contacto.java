@@ -1,8 +1,9 @@
 package datos;
 
 public class Contacto {
+	private long id;
 	private String email;
-	private String telephone;
+	private String phone;
 	private String mobile;
 	
 	public Contacto() {
@@ -10,8 +11,16 @@ public class Contacto {
 
 	public Contacto(String email, String telephone, String mobile) {
 		this.email = email;
-		this.telephone = telephone;
+		this.phone = telephone;
 		this.mobile = mobile;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getEmail() {
@@ -22,12 +31,12 @@ public class Contacto {
 		this.email = email;
 	}
 
-	public String getTelephone() {
-		return telephone;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getMobile() {
