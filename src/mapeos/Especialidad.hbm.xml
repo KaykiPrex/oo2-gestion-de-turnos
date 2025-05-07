@@ -1,0 +1,8 @@
+<hibernate-mapping>
+    <class name="datos.Especialidad" table="especialidad">
+        <id name="id" column="idespecialidad">
+            <generator class="identity"/>
+        </id>
+        <property name="name" type="string" column="name"/>
+    </class>
+</hibernate-mapping>
