@@ -1,0 +1,10 @@
+<hibernate-mapping>
+    <class name="datos.Disponibilidad" table="disponibilidad">
+        <id name="id" column="iddisponibilidad">
+            <generator class="identity"/>
+        </id>
+        <property name="date" type="org.hibernate.type.LocalDateType" column="date"/>
+        <property name="time" type="org.hibernate.type.LocalTimeType" column="time"/>
+        <!-- <property name="isBlocked" type="byte" column="blocked"/>  -->
+    </class>
+</hibernate-mapping>
