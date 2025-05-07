@@ -1,0 +1,11 @@
+<hibernate-mapping>
+    <class name="datos.Contacto" table="contacto">
+        <id name="id" column="idcontacto">
+            <generator class="identity"/>
+        </id>
+        <property name="email" type="string" column="email"/>
+        <property name="phone" type="string" column="phone"/>
+        <property name="mobile" type="string" column="mobile"/>
+        <!-- <one-to-one name="cliente" class="datos.Cliente"/> -->
+    </class>
+</hibernate-mapping>
