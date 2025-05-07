@@ -1,5 +1,7 @@
 package test;
 
+import datos.Contacto;
+import negocio.ContactoABM;
 import org.hibernate.Session;
 import dao.HibernateUtil;
 
