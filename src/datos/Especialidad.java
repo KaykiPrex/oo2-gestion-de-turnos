@@ -26,6 +26,5 @@ public class Especialidad {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+
 }

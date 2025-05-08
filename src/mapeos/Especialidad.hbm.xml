@@ -3,6 +3,6 @@
         <id name="id" column="idespecialidad">
             <generator class="identity"/>
         </id>
-        <property name="name" type="string" column="name"/>
+        <property name="name" type="string" column="name" unique="true"/>
     </class>
 </hibernate-mapping>
