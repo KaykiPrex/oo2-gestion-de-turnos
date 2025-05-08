@@ -8,14 +8,16 @@ public class Disponibilidad {
     private LocalDate date;
     private LocalTime time;
     private boolean isBlocked;
+    private Profesional profesional;
 
     public Disponibilidad() {
     }
 
-    public Disponibilidad(LocalDate date, LocalTime time, boolean isBlocked) {
+    public Disponibilidad(LocalDate date, LocalTime time, boolean isBlocked, Profesional profesional) {
         this.date = date;
         this.time = time;
         this.isBlocked = isBlocked;
+        this.profesional = profesional;
     }
 
     public long getId() {
@@ -48,5 +50,13 @@ public class Disponibilidad {
 
     public void setBlocked(boolean blocked) {
         isBlocked = blocked;
+    }
+
+    public Profesional getProfesional() {
+        return profesional;
+    }
+
+    public void setProfesional(Profesional profesional) {
+        this.profesional = profesional;
     }
 }

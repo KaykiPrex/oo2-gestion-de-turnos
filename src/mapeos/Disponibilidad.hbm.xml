@@ -6,5 +6,6 @@
         <property name="date" type="org.hibernate.type.LocalDateType" column="date"/>
         <property name="time" type="org.hibernate.type.LocalTimeType" column="time"/>
         <!-- <property name="isBlocked" type="byte" column="blocked"/>  -->
+        <many-to-one name="profesional" class="datos.Profesional" column="idpersona" not-null="true"/>
     </class>
 </hibernate-mapping>
