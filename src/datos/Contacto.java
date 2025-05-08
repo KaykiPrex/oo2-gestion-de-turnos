@@ -5,14 +5,16 @@ public class Contacto {
 	private String email;
 	private String phone;
 	private String mobile;
+	private Persona persona;
 	
 	public Contacto() {
 	}
 
-	public Contacto(String email, String telephone, String mobile) {
+	public Contacto(String email, String telephone, String mobile, Persona persona) {
 		this.email = email;
 		this.phone = telephone;
 		this.mobile = mobile;
+		this.persona = persona;
 	}
 
 	public long getId() {
@@ -46,7 +48,12 @@ public class Contacto {
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-	
-	
-	
+
+	public Persona getPersona() {
+		return persona;
+	}
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
 }

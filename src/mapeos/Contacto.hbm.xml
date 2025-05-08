@@ -6,6 +6,6 @@
         <property name="email" type="string" column="email"/>
         <property name="phone" type="string" column="phone"/>
         <property name="mobile" type="string" column="mobile"/>
-        <!-- <one-to-one name="cliente" class="datos.Cliente"/> -->
+        <one-to-one name="persona" class="datos.Persona"/>
     </class>
 </hibernate-mapping>
