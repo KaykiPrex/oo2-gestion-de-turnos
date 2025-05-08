@@ -1,15 +1,17 @@
 package datos;
 
-import java.util.List;
+import java.util.Set;
 
 public class Profesional extends Persona{
 	private Especialidad especialidad;
-	private List<Disponibilidad> disponibilidades;
+	private Set<Disponibilidad> disponibilidades;
 
-	public Profesional(String name, String password, Contacto contacto, Especialidad especialidad, List<Disponibilidad> disponibilidades) {
+	public Profesional() {
+	}
+
+	public Profesional(String name, String password, Contacto contacto, Especialidad especialidad) {
 		super(name, password, contacto);
 		this.especialidad = especialidad;
-		this.disponibilidades = disponibilidades;
 	}
 
 	public Especialidad getEspecialidad() {
@@ -20,11 +22,11 @@ public class Profesional extends Persona{
 		this.especialidad = especialidad;
 	}
 
-	public List<Disponibilidad> getDisponibilidades() {
+	public Set<Disponibilidad> getDisponibilidades() {
 		return disponibilidades;
 	}
 
-	public void setDisponibilidades(List<Disponibilidad> disponibilidades) {
+	public void setDisponibilidades(Set<Disponibilidad> disponibilidades) {
 		this.disponibilidades = disponibilidades;
 	}
 }
