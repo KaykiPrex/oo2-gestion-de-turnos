@@ -17,13 +17,9 @@ public class Persona {
 	public long getId() {
 		return id;
 	}
-
 	protected void setId(long id) { this.id = id; }
 
-	public String getNombre() {
-		return nombre;
-	}
-
+	public String getNombre() { return nombre; }
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
@@ -31,7 +27,6 @@ public class Persona {
 	public String getContrasena() {
 		return contrasena;
 	}
-
 	public void setcontrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
@@ -39,7 +34,6 @@ public class Persona {
 	public Contacto getContacto() {
 		return contacto;
 	}
-
 	public void setContacto(Contacto contacto) {
 		this.contacto = contacto;
 	}

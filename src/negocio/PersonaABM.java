@@ -5,6 +5,7 @@ import datos.Contacto;
 import datos.Persona;
 
 public class PersonaABM {
+
     PersonaDao dao = new PersonaDao();
 
     // ** Traer persona **

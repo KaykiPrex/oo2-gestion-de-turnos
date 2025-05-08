@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class ContactoDao {
+
     private static Session session;
     private Transaction tx;
 

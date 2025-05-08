@@ -17,13 +17,11 @@ public class Contacto {
 	}
 
 	public long getId() { return id; }
-
 	protected void setId(long id)  { this.id = id; }
 
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -31,7 +29,6 @@ public class Contacto {
 	public String getTelefonoFijo() {
 		return telefonoFijo;
 	}
-
 	public void setTelefonoFijo(String telefonoFijo) {
 		this.telefonoFijo = telefonoFijo;
 	}
@@ -39,13 +36,11 @@ public class Contacto {
 	public String getTelefonoMovil() {
 		return telefonoMovil;
 	}
-
 	public void setTelefonoMovil(String telefonoMovil) {
 		this.telefonoMovil = telefonoMovil;
 	}
 
 	public Persona getPersona() { return persona; }
-
 	public void setPersona(Persona persona) { this.persona = persona; }
 
 	@Override
