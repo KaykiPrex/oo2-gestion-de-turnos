@@ -6,10 +6,17 @@ public class Persona {
 	private String password;
 	private Contacto contacto;
 
+	public Persona() {
+	}
+
 	public Persona(String name, String password, Contacto contacto) {
 		this.name = name;
 		this.password = password;
 		this.contacto = contacto;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public long getId() {

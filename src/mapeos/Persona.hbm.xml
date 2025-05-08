@@ -7,10 +7,10 @@
         <property name="password" column="password" type="string"/>
         <one-to-one name="contacto" class="datos.Contacto"/>
         <joined-subclass name="datos.Profesional" table="profesional">
-            <key column="idprofesional"/>
-            <many-to-one name="especialidad" class="datos.Especialidad" column="idespecialidad" not-null="true"/>
-            <set name="disponibilidad" table="disponibilidad" order-by="iddisponibilidad asc" inverse="true" lazy="true" fetch="select">
-                <key column="idprofesional" not-null="true"/>
+            <key column="idpersona"/>
+            <many-to-one name="especialidad" class="datos.Especialidad" column="idespecialidad" not-null="true" lazy="false"/>
+            <set name="disponibilidades" table="disponibilidad" order-by="iddisponibilidad asc" inverse="true" lazy="true" fetch="select">
+                <key column="idpersona" not-null="true"/>
                 <one-to-many class="datos.Disponibilidad"/>
             </set>
         </joined-subclass>
