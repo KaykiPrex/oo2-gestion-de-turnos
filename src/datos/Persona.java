@@ -2,13 +2,15 @@ package datos;
 
 public class Persona {
 	private long id;
-	private String name;
-	private String password;
+	private String nombre;
+	private String contrasena;
 	private Contacto contacto;
 
-	public Persona(String name, String password, Contacto contacto) {
-		this.name = name;
-		this.password = password;
+	public Persona() {}
+
+	public Persona(String nombre, String contrasena, Contacto contacto) {
+		this.nombre = nombre;
+		this.contrasena = contrasena;
 		this.contacto = contacto;
 	}
 
@@ -16,20 +18,22 @@ public class Persona {
 		return id;
 	}
 
-	public String getName() {
-		return name;
+	protected void setId(long id) { this.id = id; }
+
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getContrasena() {
+		return contrasena;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setcontrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 
 	public Contacto getContacto() {
@@ -39,6 +43,10 @@ public class Persona {
 	public void setContacto(Contacto contacto) {
 		this.contacto = contacto;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Persona [id=" + id + ", nombre=" + nombre + ", contrasena=" + contrasena + ", contacto=" + contacto + "]";
+	}
 	
 }
