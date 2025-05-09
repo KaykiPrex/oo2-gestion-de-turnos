@@ -2,43 +2,45 @@ package datos;
 
 public class Persona {
 	private long id;
-	private String name;
-	private String password;
+	private String nombre;
+	private String contrasena;
 	private Contacto contacto;
 
-	public Persona(String name, String password, Contacto contacto) {
-		this.name = name;
-		this.password = password;
+	public Persona() {}
+
+	public Persona(String nombre, String contrasena, Contacto contacto) {
+		this.nombre = nombre;
+		this.contrasena = contrasena;
 		this.contacto = contacto;
 	}
 
 	public long getId() {
 		return id;
 	}
+	protected void setId(long id) { this.id = id; }
 
-	public String getName() {
-		return name;
+	public String getNombre() { return nombre; }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getContrasena() {
+		return contrasena;
 	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setcontrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 
 	public Contacto getContacto() {
 		return contacto;
 	}
-
 	public void setContacto(Contacto contacto) {
 		this.contacto = contacto;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Persona [id=" + id + ", nombre=" + nombre + ", contrasena=" + contrasena + ", contacto=" + contacto + "]";
+	}
 	
 }
