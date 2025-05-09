@@ -9,7 +9,7 @@ public class Turno {
 	private Cliente cliente;
 	private Profesional profesional;
 	private Servicio  servicio;
-
+	public Turno() {}
 	public Turno(LocalDateTime date, Cliente cliente, Profesional profesional, Servicio servicio) {
 		this.date = date;
 		this.cliente = cliente;
@@ -56,7 +56,10 @@ public class Turno {
 	public void setServicio(Servicio servicio) {
 		this.servicio = servicio;
 	}
-	
-	
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 
 }

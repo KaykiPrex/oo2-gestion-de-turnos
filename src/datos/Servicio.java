@@ -49,7 +49,11 @@ public class Servicio {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+
+		return "{nombre=" + name + ", descripcion=" + description + ", duration=" + duration + ", price=" + price +'}';
+	}
 	
 }

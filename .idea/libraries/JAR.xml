@@ -2,9 +2,11 @@
   <library name="JAR">
     <CLASSES>
       <root url="file://$USER_HOME$/Desktop/Luca - Facultad/POO - 2/Librerías Hibernate/Libs HBM 5 para Java" />
+      <root url="file://$PROJECT_DIR$/../Nueva carpeta/jdk" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
     <jarDirectory url="file://$USER_HOME$/Desktop/Luca - Facultad/POO - 2/Librerías Hibernate/Libs HBM 5 para Java" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../Nueva carpeta/jdk" recursive="false" />
   </library>
 </component>
