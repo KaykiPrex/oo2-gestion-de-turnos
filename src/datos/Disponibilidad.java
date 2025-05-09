@@ -5,18 +5,18 @@ import java.time.LocalTime;
 
 public class Disponibilidad {
     private long id;
-    private LocalDate date;
-    private LocalTime time;
-    private boolean isBlocked;
+    private LocalDate fecha;
+    private LocalTime hora;
+    private boolean disponible;
     private Profesional profesional;
 
     public Disponibilidad() {
     }
 
-    public Disponibilidad(LocalDate date, LocalTime time, boolean isBlocked, Profesional profesional) {
-        this.date = date;
-        this.time = time;
-        this.isBlocked = isBlocked;
+    public Disponibilidad(LocalDate fecha, LocalTime hora, boolean disponible, Profesional profesional) {
+        this.fecha = fecha;
+        this.hora = hora;
+        this.disponible = disponible;
         this.profesional = profesional;
     }
 
@@ -28,28 +28,28 @@ public class Disponibilidad {
         this.id = id;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getFecha() {
+        return fecha;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
     }
 
-    public LocalTime getTime() {
-        return time;
+    public LocalTime getHora() {
+        return hora;
     }
 
-    public void setTime(LocalTime time) {
-        this.time = time;
+    public void setHora(LocalTime hora) {
+        this.hora = hora;
     }
 
-    public boolean isBlocked() {
-        return isBlocked;
+    public boolean getDisponible() {
+        return disponible;
     }
 
-    public void setBlocked(boolean blocked) {
-        isBlocked = blocked;
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
     }
 
     public Profesional getProfesional() {

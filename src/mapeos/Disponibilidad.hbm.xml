@@ -1,11 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="datos.Disponibilidad" table="disponibilidad">
         <id name="id" column="iddisponibilidad">
             <generator class="identity"/>
         </id>
-        <property name="date" type="org.hibernate.type.LocalDateType" column="date"/>
-        <property name="time" type="org.hibernate.type.LocalTimeType" column="time"/>
-        <!-- <property name="isBlocked" type="byte" column="blocked"/>  -->
+        <property name="fecha" type="org.hibernate.type.LocalDateType" column="fecha"/>
+        <property name="hora" type="org.hibernate.type.LocalTimeType" column="hora"/>
+        <property name="disponible" type="boolean" column="disponible"/>
         <many-to-one name="profesional" class="datos.Profesional" column="idpersona" not-null="true"/>
     </class>
 </hibernate-mapping>

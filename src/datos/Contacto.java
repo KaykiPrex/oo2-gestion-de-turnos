@@ -1,59 +1,65 @@
 package datos;
 
 public class Contacto {
-	private long id;
-	private String email;
-	private String phone;
-	private String mobile;
-	private Persona persona;
-	
-	public Contacto() {
-	}
+    private long id;
+    private String email;
+    private String telefonoFijo;
+    private String telefonoMovil;
+    private Persona persona;
 
-	public Contacto(String email, String telephone, String mobile, Persona persona) {
-		this.email = email;
-		this.phone = telephone;
-		this.mobile = mobile;
-		this.persona = persona;
-	}
+    public Contacto() {
+    }
 
-	public long getId() {
-		return id;
-	}
+    public Contacto(String email, String telefonoFijo, String telefonoMovil, Persona persona) {
+        this.email = email;
+        this.telefonoFijo = telefonoFijo;
+        this.telefonoMovil = telefonoMovil;
+        this.persona = persona;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public String getTelefonoFijo() {
+        return telefonoFijo;
+    }
 
-	public String getMobile() {
-		return mobile;
-	}
+    public void setTelefonoFijo(String telefonoFijo) {
+        this.telefonoFijo = telefonoFijo;
+    }
 
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
+    public String getTelefonoMovil() {
+        return telefonoMovil;
+    }
 
-	public Persona getPersona() {
-		return persona;
-	}
+    public void setTelefonoMovil(String telefonoMovil) {
+        this.telefonoMovil = telefonoMovil;
+    }
 
-	public void setPersona(Persona persona) {
-		this.persona = persona;
-	}
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+
+    @Override
+    public String toString() {
+        return "Contacto [id=" + id + ", email=" + email + ", telefonoFijo=" + telefonoFijo + ", telefonoMovil=" + telefonoMovil
+                + "]";
+    }
 }

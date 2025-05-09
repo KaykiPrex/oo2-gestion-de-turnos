@@ -17,11 +17,11 @@ public class PersonaABM {
         return instancia;
     }
 
-    public Persona traer(int idPersona) {
+    public Persona traer(long idPersona) {
         return PersonaDao.getInstance().traer(idPersona);
     }
 
-    public Persona traerProfesional(int idProfesional) {
+    public Persona traerProfesional(long idProfesional) {
         return PersonaDao.getInstance().traerProfesionalDisponibilidadesYEspecialidad(idProfesional);
     }
 

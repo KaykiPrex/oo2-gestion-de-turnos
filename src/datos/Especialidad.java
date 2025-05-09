@@ -1,30 +1,30 @@
 package datos;
 
 public class Especialidad {
-	private long id;
-	private String name;
+    private long id;
+    private String nombre;
 
-	public Especialidad() {
-	}
+    public Especialidad() {
+    }
 
-	public Especialidad(String name) {
-		this.name = name;
-	}
+    public Especialidad(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public long getId() {
-		return id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
 }

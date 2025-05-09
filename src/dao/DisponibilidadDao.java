@@ -29,4 +29,33 @@ public class DisponibilidadDao {
         }
         return objeto;
     }
+
+    public int agregar(Disponibilidad objeto) {
+        int id = 0;
+        try {
+            iniciaOperacion();
+            id = Integer.parseInt(session.save(objeto).toString());
+            tx.commit();
+        } catch (HibernateException he) {
+            manejaExcepcion(he);
+            throw he;
+        } finally {
+            session.close();
+
+        }
+        return id;
+    }
+
+    public void actualizar(Disponibilidad objeto) {
+        try {
+            iniciaOperacion();
+            session.update(objeto);
+            tx.commit();
+        } catch (HibernateException he) {
+            manejaExcepcion(he);
+            throw he;
+        } finally {
+            session.close();
+        }
+    }
 }

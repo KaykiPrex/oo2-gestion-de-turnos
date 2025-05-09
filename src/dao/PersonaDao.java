@@ -1,6 +1,5 @@
 package dao;
 
-import datos.Cliente;
 import datos.Persona;
 import datos.Profesional;
 import org.hibernate.Hibernate;
@@ -51,11 +50,10 @@ public class PersonaDao {
         try {
             iniciaOperacion();
             String hql = "from Persona p where p.id=:idPersona";
-            objeto=(Profesional) session.createQuery(hql).setParameter("idPersona", idProfesional).uniqueResult();
+            objeto = (Profesional) session.createQuery(hql).setParameter("idPersona", idProfesional).uniqueResult();
             Hibernate.initialize(objeto.getDisponibilidades());
             Hibernate.initialize(objeto.getEspecialidad());
-        }
-        finally {
+        } finally {
             session.close();
         }
         return objeto;
