@@ -13,6 +13,7 @@
         <mapping resource="mapeos/Contacto.hbm.xml"/>
         <mapping resource="mapeos/Disponibilidad.hbm.xml"/>
         <mapping resource="mapeos/Especialidad.hbm.xml"/> 
+        <mapping resource="mapeos/Turno.hbm.xml"/>  
         
     </session-factory>
 </hibernate-configuration>
