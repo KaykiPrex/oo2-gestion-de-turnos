@@ -18,13 +18,18 @@ public class Turno {
 	}
 	@Override
 	public String toString() {
-		return "Turno{" + "fechaHora=" + date + ", servicio='" + servicio +"profesional"+ profesional + '}';
+		return "Turno [id=" + id + ", fechaHora=" + fechaHora + ", cliente=" + cliente + ", profesional=" + profesional
+				+ ", servicio=" + servicio + "]";
 	}
 
 	public long getId() {
 		return id;
 	}
 
+	protected void setId(long id) {
+		this.id = id;
+	}
+	
 	public LocalDateTime getDate() {
 		return date;
 	}
