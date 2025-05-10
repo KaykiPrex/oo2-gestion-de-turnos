@@ -18,6 +18,15 @@
                 <key column="idpersona" not-null="true"/>
                 <one-to-many class="datos.Disponibilidad"/>
             </set>
-          </joined-subclass>  
+        </joined-subclass>  
+
+        <joined-subclass name="datos.Cliente" table="cliente">
+            <key column="idpersona"/>
+            <list name="turnos" table="turnos" inverse="true" lazy="true" fetch="select">
+                <key column="id" not-null="true"/>
+                <index column="orden"/>
+                <one-to-many class="datos.Turno"/>
+            </list>
+        </joined-subclass>  
     </class>
 </hibernate-mapping>
