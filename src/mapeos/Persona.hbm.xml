@@ -9,5 +9,15 @@
         <property column="nombre" name="nombre" type="string"/>
         <property column="contraseña" name="contrasena" type="string"/>
         <one-to-one name="contacto" class="datos.Contacto"/>
+
+        <joined-subclass name="datos.Profesional" table="profesional">
+       	        <key column="idpersona"/>
+            <many-to-one name="especialidad" class="datos.Especialidad" column="idespecialidad" not-null="true" lazy="false"/>
+            
+            <set name="disponibilidades" table="disponibilidad" order-by="iddisponibilidad asc" inverse="true" lazy="true" fetch="select">
+                <key column="idpersona" not-null="true"/>
+                <one-to-many class="datos.Disponibilidad"/>
+            </set>
+          </joined-subclass>  
     </class>
 </hibernate-mapping>
