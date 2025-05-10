@@ -12,26 +12,19 @@ public class Cliente extends Persona{
 		this.turnos = new ArrayList<Turno>();
 	}
 
-	public void pedirTurno(Turno turno) {
-		turnos.add(turno);
-		System.out.println("Turno agendado: " + turno);
+	public Cliente() {
 	}
 
-
-	public boolean cancelarTurno(Turno turno) {
-		if (turnos.contains(turno)) {
-			turnos.remove(turno);
-			System.out.println("Turno cancelado: " + turno);
-			return true;
-		} else {
-			System.out.println("El turno no existe.");
-			return false;
-		}
-	}
-
-
-	public List<Turno> traerHistorialTurnos() {
+	public List<Turno> getTurnos() {
 		return turnos;
 	}
 
+	public void setTurnos(List<Turno> turnos) {
+		this.turnos = turnos;
+	}
+
+	@Override
+	public String toString() {
+		return "Cliente [" + super.toString() + "]";
+	}
 }
