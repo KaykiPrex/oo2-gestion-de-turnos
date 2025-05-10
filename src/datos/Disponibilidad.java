@@ -24,9 +24,9 @@ public class Disponibilidad {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+	protected void setId(long id) {
+		this.id = id;
+	}
 
     public LocalDate getFecha() {
         return fecha;
@@ -52,11 +52,18 @@ public class Disponibilidad {
         this.disponible = disponible;
     }
 
-    public Profesional getProfesional() {
-        return profesional;
-    }
+	public Profesional getProfesional() {
+		return profesional;
+	}
 
-    public void setProfesional(Profesional profesional) {
-        this.profesional = profesional;
-    }
+	public void setProfesional(Profesional profesional) {
+		this.profesional = profesional;
+	}
+
+	@Override
+	public String toString() {
+		return "Disponibilidad [id=" + id + ", Fecha=" + date + ", Hora=" + time + ", Ocupado=" + blocked + "]";
+	}
+
 }
+

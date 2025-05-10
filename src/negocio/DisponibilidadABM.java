@@ -10,14 +10,19 @@ import java.time.LocalTime;
 public class DisponibilidadABM {
     DisponibilidadDao dao = new DisponibilidadDao();
 
-    public Disponibilidad traer(long idDisponibilidad) {
-        return dao.traer(idDisponibilidad);
+    public long agregar(Disponibilidad d) {
+        return dao.agregar(d);
     }
 
     public int agregar(LocalDate date, LocalTime time, boolean isBlocked, Profesional profesional) {
         Disponibilidad c = new Disponibilidad(date, time, isBlocked, profesional);
         return dao.agregar(c);
     }
+
+    public Disponibilidad traer(long idDisponibilidad) {
+        return dao.traer(idDisponibilidad);
+    }
+
 
     public void modificar(Disponibilidad d) {
         dao.actualizar(d);
@@ -32,4 +37,5 @@ public class DisponibilidadABM {
         d.setDisponible(true);
         dao.actualizar(d);
     }
+
 }

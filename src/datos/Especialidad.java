@@ -11,7 +11,7 @@ public class Especialidad {
         this.nombre = nombre;
     }
 
-    public void setId(long id) {
+    protected void setId(long id) {
         this.id = id;
     }
 
@@ -26,5 +26,11 @@ public class Especialidad {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    @Override
+    public String toString() {
+        return "Especialidad [id=" + id + ", name=" + nombre + "]";
+    }
+
 
 }

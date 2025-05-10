@@ -3,33 +3,34 @@ package datos;
 import java.time.LocalDateTime;
 
 public class Turno {
+
     private long id;
-    private Disponibilidad disponibilidad;
+    private LocalDateTime date;
     private Cliente cliente;
     private Profesional profesional;
     private Servicio servicio;
 
-    public Turno(Servicio servicio, Profesional profesional, Cliente cliente, Disponibilidad disponibilidad) {
-        this.servicio = servicio;
-        this.profesional = profesional;
+    public Turno(LocalDateTime date, Cliente cliente, Profesional profesional, Servicio servicio) {
+        this.date = date;
         this.cliente = cliente;
-        this.disponibilidad = disponibilidad;
+        this.profesional = profesional;
+        this.servicio = servicio;
     }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    protected void setId(long id) {
         this.id = id;
     }
 
-    public Disponibilidad getDisponibilidad() {
-        return disponibilidad;
+    public LocalDateTime getDate() {
+        return date;
     }
 
-    public void setDisponibilidad(Disponibilidad disponibilidad) {
-        this.disponibilidad = disponibilidad;
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
 
     public Cliente getCliente() {
@@ -56,5 +57,10 @@ public class Turno {
         this.servicio = servicio;
     }
 
+    @Override
+    public String toString() {
+        return "Turno [id=" + id + ", fechaHora=" + fechaHora + ", cliente=" + cliente + ", profesional=" + profesional
+                + ", servicio=" + servicio + "]";
+    }
 
 }

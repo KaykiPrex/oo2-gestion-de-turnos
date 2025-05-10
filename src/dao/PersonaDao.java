@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import java.util.List;
 
 public class PersonaDao {
+
     private static Session session;
     private Transaction tx;
     private static PersonaDao instancia = null; // Patrón Singleton
@@ -33,6 +34,37 @@ public class PersonaDao {
         throw new HibernateException("ERROR en la capa de acceso a datos", he);
     }
 
+    // ** Método para agregar una Persona **
+    public int agregar(Persona objeto) {
+        int id = 0;
+        try {
+            iniciaOperacion();
+            id = Integer.parseInt(session.save(objeto).toString());
+            tx.commit();
+        } catch(HibernateException he) {
+            manejaExcepcion(he);
+            throw he;
+        } finally {
+            session.close();
+        }
+        return id;
+    }
+
+    // ** Método para actualizar una Persona **
+    public void actualizar(Persona objeto) {
+        try {
+            iniciaOperacion();
+            session.update(objeto);
+            tx.commit();
+        } catch(HibernateException he) {
+            manejaExcepcion(he);
+            throw he;
+        } finally {
+            session.close();
+        }
+    }
+
+    // ** Método para traer una Persona (Posterior eliminar) **
     public Persona traer(long idPersona) {
         Persona objeto = null;
         try {
@@ -53,6 +85,22 @@ public class PersonaDao {
             objeto = (Profesional) session.createQuery(hql).setParameter("idPersona", idProfesional).uniqueResult();
             Hibernate.initialize(objeto.getDisponibilidades());
             Hibernate.initialize(objeto.getEspecialidad());
+        } finally {
+            session.close();
+        }
+        return objeto;
+    }
+
+    // ** Método para traer una Persona (Posterior Login) **
+    public Persona traer(String nombre, String contrasena) {
+        Persona objeto = null;
+        try {
+            iniciaOperacion();
+            String hql = "from Persona p where p.nombre = :nombre and p.contrasena = :contrasena";
+            objeto = (Persona) session.createQuery(hql)
+                    .setParameter("nombre", nombre)
+                    .setParameter("contrasena", contrasena)
+                    .uniqueResult();
         } finally {
             session.close();
         }
@@ -85,4 +133,18 @@ public class PersonaDao {
         }
         return lista;
     }
+
+    public void eliminar(Persona objeto) {
+        try {
+            iniciaOperacion();
+            session.delete(objeto);
+            tx.commit();
+        } catch(HibernateException he) {
+            manejaExcepcion(he);
+            throw he;
+        } finally {
+            session.close();
+        }
+    }
+
 }

@@ -15,12 +15,12 @@ public class Persona {
         this.contacto = contacto;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public long getId() {
         return id;
+    }
+
+    protected void setId(long id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -47,5 +47,9 @@ public class Persona {
         this.contacto = contacto;
     }
 
+    @Override
+    public String toString() {
+        return "Persona [id=" + id + ", nombre=" + nombre + ", contrasena=" + contrasena + ", contacto=" + contacto + "]";
+    }
 
 }
