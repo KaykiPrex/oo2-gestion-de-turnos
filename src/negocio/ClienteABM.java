@@ -17,9 +17,12 @@ public class ClienteABM {
 		return dao.traer(id);
 	}
 	
-	public void modificarFHTurno(long idTurno, LocalDateTime fechaHora) {
+	public void modificarFHTurno(Cliente cliente, long idTurno, LocalDateTime fechaHora) throws Exception{
 		TurnoDao turnoDao = new TurnoDao();
 		Turno t = turnoDao.traer(idTurno);
+		
+		if(t.getCliente().getId()!=cliente.getId()) throw new Exception("ERROR Este turno no le pertenece al cliente que quiere modificarlo");
+		
 		t.setFechaHora(fechaHora);
 		turnoDao.actualizar(t);
 	}
