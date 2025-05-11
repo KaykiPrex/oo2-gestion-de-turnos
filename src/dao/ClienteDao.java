@@ -71,7 +71,7 @@ public class ClienteDao {
     public void pedirTurno(Cliente cliente, Turno turno) {
 
         iniciaOperacion();
-        cliente.traerHistorialTurnos().add(turno);
+        cliente.getTurnos().add(turno);
         session.update(cliente);
         session.getTransaction().commit();
 
@@ -88,7 +88,7 @@ public class ClienteDao {
 
             Cliente cliente = turno.getCliente();
             if (cliente != null) {
-                cliente.traerHistorialTurnos().remove(turno);// se lo borra al cliente
+                cliente.getTurnos().remove(turno);// se lo borra al cliente
                 session.update(cliente);
 
             }

@@ -24,7 +24,7 @@ public class TurnoDao {
         long id = 0;
         try {
             iniciaOperacion();
-            id = Integer.parseInt(session.save(objeto).toString());
+            id = Long.parseLong(session.save(objeto).toString());
         } catch (HibernateException he) {
             manejaExcepcion(he);
         } finally {

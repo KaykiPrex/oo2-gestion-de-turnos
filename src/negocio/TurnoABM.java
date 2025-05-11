@@ -16,7 +16,7 @@ public class TurnoABM {
 		return dao.agregar(objeto);
 	}
 
-    public int agregarTurno(LocalDateTime date, Cliente cliente, Profesional profesional, Servicio servicio) {
+    public long agregarTurno(LocalDateTime date, Cliente cliente, Profesional profesional, Servicio servicio) {
         Turno t = new Turno(date, cliente, profesional, servicio);
         return dao.agregar(t);
     }
