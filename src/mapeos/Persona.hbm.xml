@@ -7,7 +7,7 @@
             <generator class="identity"/>
         </id>
         <property name="nombre" column="nombre" type="string"/>
-        <property name="contrasena" column="contrasena" type="string"/>
+        <property name="contrasena" column="contraseña" type="string"/>
         <one-to-one name="contacto" class="datos.Contacto"/>
         <joined-subclass name="datos.Profesional" table="profesional">
             <key column="idpersona"/>
