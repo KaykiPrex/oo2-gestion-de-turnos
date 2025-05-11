@@ -10,6 +10,9 @@ public class Turno {
     private Profesional profesional;
     private Servicio servicio;
 
+    public Turno() {
+    }
+
     public Turno(LocalDateTime fechaHora, Cliente cliente, Profesional profesional, Servicio servicio) {
         this.fechaHora = fechaHora;
         this.cliente = cliente;

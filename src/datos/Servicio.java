@@ -50,5 +50,10 @@ public class Servicio {
         this.precio = precio;
     }
 
+	@Override
+	public String toString() {
+
+		return "{nombre=" + nombre + ", descripcion=" + descripcion + ", duration=" + duracion + ", price=" + precio +'}';
+	}
 
 }
