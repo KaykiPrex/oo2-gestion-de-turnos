@@ -4,55 +4,53 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Disponibilidad {
-	private long id;
-	private LocalDate date;
-	private LocalTime time;
-	private boolean blocked;
-	private Profesional profesional;
-	
-	public Disponibilidad(LocalDate date, LocalTime time, boolean blocked, Profesional profesional) {
-		super();
-		this.date = date;
-		this.time = time;
-		this.blocked = blocked;
-		this.profesional = profesional;
-	}
+    private long id;
+    private LocalDate fecha;
+    private LocalTime hora;
+    private boolean disponible;
+    private Profesional profesional;
 
-	public Disponibilidad() {
-		
-	}
-	
-	public long getId() {
-		return id;
-	}
+    public Disponibilidad() {
+    }
+
+    public Disponibilidad(LocalDate fecha, LocalTime hora, boolean disponible, Profesional profesional) {
+        this.fecha = fecha;
+        this.hora = hora;
+        this.disponible = disponible;
+        this.profesional = profesional;
+    }
+
+    public long getId() {
+        return id;
+    }
 
 	protected void setId(long id) {
 		this.id = id;
 	}
 
-	public LocalDate getDate() {
-		return date;
-	}
+    public LocalDate getFecha() {
+        return fecha;
+    }
 
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
 
-	public LocalTime getTime() {
-		return time;
-	}
+    public LocalTime getHora() {
+        return hora;
+    }
 
-	public void setTime(LocalTime time) {
-		this.time = time;
-	}
+    public void setHora(LocalTime hora) {
+        this.hora = hora;
+    }
 
-	public boolean isBlocked() {
-		return blocked;
-	}
+    public boolean getDisponible() {
+        return disponible;
+    }
 
-	public void setBlocked(boolean blocked) {
-		this.blocked = blocked;
-	}
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
 
 	public Profesional getProfesional() {
 		return profesional;
@@ -64,8 +62,8 @@ public class Disponibilidad {
 
 	@Override
 	public String toString() {
-		return "Disponibilidad [id=" + id + ", Fecha=" + date + ", Hora=" + time + ", Ocupado=" + blocked + "]";
+		return "Disponibilidad [id=" + id + ", Fecha=" + fecha + ", Hora=" + hora + ", Ocupado=" + disponible + "]";
 	}
-	
+
 }
 

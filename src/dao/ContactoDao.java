@@ -27,7 +27,7 @@ public class ContactoDao {
             iniciaOperacion();
             id = Integer.parseInt(session.save(objeto).toString());
             tx.commit();
-        } catch(HibernateException he) {
+        } catch (HibernateException he) {
             manejaExcepcion(he);
             throw he;
         } finally {
@@ -41,7 +41,7 @@ public class ContactoDao {
         Contacto objeto = null;
         try {
             iniciaOperacion();
-            objeto = (Contacto)session.get(Contacto.class, idContacto);
+            objeto = (Contacto) session.get(Contacto.class, idContacto);
         } finally {
             session.close();
         }
@@ -54,7 +54,7 @@ public class ContactoDao {
             iniciaOperacion();
             session.update(objeto);
             tx.commit();
-        } catch(HibernateException he) {
+        } catch (HibernateException he) {
             manejaExcepcion(he);
             throw he;
         } finally {
@@ -68,7 +68,7 @@ public class ContactoDao {
             iniciaOperacion();
             session.delete(objeto);
             tx.commit();
-        } catch(HibernateException he) {
+        } catch (HibernateException he) {
             manejaExcepcion(he);
             throw he;
         } finally {

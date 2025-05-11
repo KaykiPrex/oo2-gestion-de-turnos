@@ -1,55 +1,54 @@
 package datos;
 
 public class Servicio {
-	private long id;
-	private String name;
-	private String description;
-	private String duration;
-	private Double price;
-	
-	public Servicio(String name, String description, String duration, Double price) {
-		this.name = name;
-		this.description = description;
-		this.duration = duration;
-		this.price = price;
-	}
+    private long id;
+    private String nombre;
+    private String descripcion;
+    private String duracion;
+    private Double precio;
 
-	public long getId() {
-		return id;
-	}
+    public Servicio(String nombre, String descripcion, String duracion, Double precio) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.duracion = duracion;
+        this.precio = precio;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getDescripcion() {
+        return descripcion;
+    }
 
-	public String getDuration() {
-		return duration;
-	}
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
-	public void setDuration(String duration) {
-		this.duration = duration;
-	}
+    public String getDuracion() {
+        return duracion;
+    }
 
-	public Double getPrice() {
-		return price;
-	}
+    public void setDuracion(String duracion) {
+        this.duracion = duracion;
+    }
 
-	public void setPrice(Double price) {
-		this.price = price;
-	}
-	
-	
-	
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
+
 }

@@ -23,44 +23,44 @@ public class EspecialidadDao {
         tx.rollback();
         throw new HibernateException("ERROR en la capa de acceso a datos", he);
     }
-    
+
     public long agregar(Especialidad objeto) {
-		long id = 0;
-		try {
-			iniciaOperacion();
-			id = Integer.parseInt(session.save(objeto).toString());
-		} catch(HibernateException he){
-			manejaExcepcion(he);
-		}finally {
-			session.close();
-		}
-		return id;
-	}
-	
-	public void actualizar(Especialidad objeto) {
-		try {
-			iniciaOperacion();
-			session.update(objeto);
-			tx.commit();
-		}catch(HibernateException he) {
-			manejaExcepcion(he);
-		}finally {
-			session.close();
-		}
-	}
-	
-	public void eliminar(Especialidad objeto) {
-		try {
-			iniciaOperacion();
-			session.delete(objeto);
-			tx.commit();
-		}catch(HibernateException he){
-			manejaExcepcion(he);
-		}finally {
-			session.close();
-		}
-	}
-	
+        long id = 0;
+        try {
+            iniciaOperacion();
+            id = Integer.parseInt(session.save(objeto).toString());
+        } catch (HibernateException he) {
+            manejaExcepcion(he);
+        } finally {
+            session.close();
+        }
+        return id;
+    }
+
+    public void actualizar(Especialidad objeto) {
+        try {
+            iniciaOperacion();
+            session.update(objeto);
+            tx.commit();
+        } catch (HibernateException he) {
+            manejaExcepcion(he);
+        } finally {
+            session.close();
+        }
+    }
+
+    public void eliminar(Especialidad objeto) {
+        try {
+            iniciaOperacion();
+            session.delete(objeto);
+            tx.commit();
+        } catch (HibernateException he) {
+            manejaExcepcion(he);
+        } finally {
+            session.close();
+        }
+    }
+
     public Especialidad traer(long idEspecialidad) {
         Especialidad objeto = null;
         try {
@@ -71,17 +71,17 @@ public class EspecialidadDao {
         }
         return objeto;
     }
-    
+
     public Especialidad traer(String nombre) {
-    	 Especialidad objeto = null;
-         try {
-             iniciaOperacion();
-             
-             objeto = (Especialidad) session.createQuery("from Especialidad e where e.nombre = :nombre").setParameter("nombre", nombre).uniqueResult();
-         } finally {
-             session.close();
-         }
-         return objeto;
+        Especialidad objeto = null;
+        try {
+            iniciaOperacion();
+
+            objeto = (Especialidad) session.createQuery("from Especialidad e where e.nombre = :nombre").setParameter("nombre", nombre).uniqueResult();
+        } finally {
+            session.close();
+        }
+        return objeto;
     }
 
 }

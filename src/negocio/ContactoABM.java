@@ -13,7 +13,7 @@ public class ContactoABM {
 
     // ** Asignar un contacto a una Persona **
     public int asociar(String email, String telefonoFijo, String telefonoMovil, Persona persona) throws Exception {
-        if(persona.getContacto() != null) {
+        if (persona.getContacto() != null) {
             throw new Exception("El cliente ya cuenta con un contacto asociado");
         }
         Contacto c = new Contacto(email, telefonoFijo, telefonoMovil, persona);

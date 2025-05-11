@@ -1,36 +1,36 @@
 package datos;
 
 public class Especialidad {
-	private long id;
-	private String nombre;
-	
-	public Especialidad(String nombre) {
-		this.nombre = nombre;
-	}
-	
-	public Especialidad() {
-	}
+    private long id;
+    private String nombre;
 
-	protected void setId(long id) {
-		this.id = id;
-	}
+    public Especialidad() {
+    }
 
-	public long getId() {
-		return id;
-	}
+    public Especialidad(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public String getNombre() {
-		return nombre;
-	}
+    protected void setId(long id) {
+        this.id = id;
+    }
 
-	public void setNombre(String name) {
-		this.nombre = name;
-	}
+    public long getId() {
+        return id;
+    }
 
-	@Override
-	public String toString() {
-		return "Especialidad [id=" + id + ", name=" + nombre + "]";
-	}
-	
-	
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Override
+    public String toString() {
+        return "Especialidad [id=" + id + ", name=" + nombre + "]";
+    }
+
+
 }
