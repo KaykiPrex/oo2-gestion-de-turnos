@@ -5,13 +5,13 @@ import java.time.LocalDateTime;
 public class Turno {
 
     private long id;
-    private LocalDateTime date;
+    private LocalDateTime fechaHora;
     private Cliente cliente;
     private Profesional profesional;
     private Servicio servicio;
 
-    public Turno(LocalDateTime date, Cliente cliente, Profesional profesional, Servicio servicio) {
-        this.date = date;
+    public Turno(LocalDateTime fechaHora, Cliente cliente, Profesional profesional, Servicio servicio) {
+        this.fechaHora = fechaHora;
         this.cliente = cliente;
         this.profesional = profesional;
         this.servicio = servicio;
@@ -25,12 +25,12 @@ public class Turno {
         this.id = id;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public LocalDateTime getFechaHora() {
+        return fechaHora;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setFechaHora(LocalDateTime fechaHora) {
+        this.fechaHora = fechaHora;
     }
 
     public Cliente getCliente() {
