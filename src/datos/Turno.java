@@ -4,62 +4,66 @@ import java.time.LocalDateTime;
 
 public class Turno {
 
-	private long id;
-	private LocalDateTime date;
-	private Cliente cliente;
-	private Profesional profesional;
-	private Servicio  servicio;
-	public Turno() {}
-	public Turno(LocalDateTime date, Cliente cliente, Profesional profesional, Servicio servicio) {
-		this.date = date;
-		this.cliente = cliente;
-		this.profesional = profesional;
-		this.servicio = servicio;
-	}
-	@Override
-	public String toString() {
-		return "Turno{" + "fechaHora=" + date + ", servicio='" + servicio +"profesional"+ profesional + '}';
-	}
+    private long id;
+    private LocalDateTime fechaHora;
+    private Cliente cliente;
+    private Profesional profesional;
+    private Servicio servicio;
 
-	public long getId() {
-		return id;
-	}
+    public Turno() {
+    }
 
-	public LocalDateTime getDate() {
-		return date;
-	}
+    public Turno(LocalDateTime fechaHora, Cliente cliente, Profesional profesional, Servicio servicio) {
+        this.fechaHora = fechaHora;
+        this.cliente = cliente;
+        this.profesional = profesional;
+        this.servicio = servicio;
+    }
 
-	public void setDate(LocalDateTime date) {
-		this.date = date;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public Cliente getCliente() {
-		return cliente;
-	}
+    protected void setId(long id) {
+        this.id = id;
+    }
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
+    public LocalDateTime getFechaHora() {
+        return fechaHora;
+    }
 
-	public Profesional getProfesional() {
-		return profesional;
-	}
+    public void setFechaHora(LocalDateTime fechaHora) {
+        this.fechaHora = fechaHora;
+    }
 
-	public void setProfesional(Profesional profesional) {
-		this.profesional = profesional;
-	}
+    public Cliente getCliente() {
+        return cliente;
+    }
 
-	public Servicio getServicio() {
-		return servicio;
-	}
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 
-	public void setServicio(Servicio servicio) {
-		this.servicio = servicio;
-	}
+    public Profesional getProfesional() {
+        return profesional;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public void setProfesional(Profesional profesional) {
+        this.profesional = profesional;
+    }
 
+    public Servicio getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(Servicio servicio) {
+        this.servicio = servicio;
+    }
+
+    @Override
+    public String toString() {
+        return "Turno [id=" + id + ", fechaHora=" + fechaHora + ", cliente=" + cliente + ", profesional=" + profesional
+                + ", servicio=" + servicio + "]";
+    }
 
 }

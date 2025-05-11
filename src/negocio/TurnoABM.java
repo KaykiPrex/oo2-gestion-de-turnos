@@ -10,22 +10,29 @@ import java.time.LocalDateTime;
 
 public class TurnoABM {
 
-    TurnoDao dao = new TurnoDao();
+	TurnoDao dao = new TurnoDao();
+
+	public long agregar(Turno objeto) {
+		return dao.agregar(objeto);
+	}
 
     public int agregarTurno(LocalDateTime date, Cliente cliente, Profesional profesional, Servicio servicio) {
         Turno t = new Turno(date, cliente, profesional, servicio);
-        return dao.agregarTurno(t);
+        return dao.agregar(t);
     }
 
-    public Turno traerTurno(int id) {
-        return dao.traerTurno(id);
-    }
+	public void modificar(Turno objeto) {
+		dao.actualizar(objeto);
+	}
 
-    public void eliminarTurno(long idTurno) {
-        Turno t = dao.traerTurno(idTurno);
-        dao.eliminarTurno(t);
-    }
+	public Turno traer(long id) {
+		return dao.traer(id);
+	}
 
+	public void eliminar(long id) {
+		Turno objeto = dao.traer(id);
+		dao.eliminar(objeto);
+	}
 
 
 }

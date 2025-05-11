@@ -5,35 +5,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Cliente extends Persona{
-	private List<Turno> turnos;
-	public Cliente() {}
-	public Cliente(String name, String password, Contacto contacto) {
-		super(name,  password, contacto);
-		this.turnos = new ArrayList<Turno>();
-	}
-	public void mostrarCliente(){
-		System.out.println(this.toString());
-	}
+public class Cliente extends Persona {
+    private List<Turno> turnos;
 
-	public List<Turno> traerHistorialTurnos() {
-		return turnos;
-	}
-	public void setNombre(String nombre) {
-		super.setNombre(nombre);
-	}
-	public void setContraseña(String password) {
-		super.setcontrasena(password);
-	}
+    public Cliente(String name, String password, Contacto contacto) {
+        super(name, password, contacto);
+        this.turnos = new ArrayList<Turno>();
+    }
 
-	@Override
-	public void setContacto(Contacto contacto) {
-		super.setContacto(contacto);
-	}
+    public Cliente() {
+    }
 
-	@Override
-	public Contacto getContacto() {
-		return super.getContacto();
-	}
+    public List<Turno> getTurnos() {
+        return turnos;
+    }
 
+    public void setTurnos(List<Turno> turnos) {
+        this.turnos = turnos;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente [" + super.toString() + "]";
+    }
 }

@@ -3,13 +3,30 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="datos.Persona" table="persona">
-        <id column="id" name="id" type="long">
+        <id name="id" column="idpersona">
             <generator class="identity"/>
         </id>
-        <property column="nombre" name="nombre" type="string"/>
-        <property column="contraseña" name="contrasena" type="string"/>
+        <property name="nombre" column="nombre" type="string"/>
+        <property name="contrasena" column="contrasena" type="string"/>
         <one-to-one name="contacto" class="datos.Contacto"/>
+        <joined-subclass name="datos.Profesional" table="profesional">
+            <key column="idpersona"/>
+            <many-to-one name="especialidad" class="datos.Especialidad" column="idespecialidad" not-null="true"
+                         lazy="false"/>
+            <set name="disponibilidades" table="disponibilidad" order-by="iddisponibilidad asc" inverse="true"
+                 lazy="true" fetch="select">
+                <key column="idpersona" not-null="true"/>
+                <one-to-many class="datos.Disponibilidad"/>
+            </set>
+        </joined-subclass>
 
-
+        <joined-subclass name="datos.Cliente" table="cliente">
+            <key column="idpersona"/>
+            <list name="turnos" table="turnos" inverse="true" lazy="true" fetch="select">
+                <key column="id" not-null="true"/>
+                <index column="orden"/>
+                <one-to-many class="datos.Turno"/>
+            </list>
+        </joined-subclass>
     </class>
 </hibernate-mapping>

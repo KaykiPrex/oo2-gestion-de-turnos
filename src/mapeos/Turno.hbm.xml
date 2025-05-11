@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="datos.Turno" table="turno">
-        <id column="id" name="id" type="long">
+        <id name="id" column="id">
             <generator class="identity"/>
         </id>
-        <property column="date" name="date" type="timestamp"/>
-        <many-to-one name="cliente" class="datos.Cliente" column="id_cliente" not-null="true"/>
+        <property name="fechaHora" type="org.hibernate.type.LocalDateTimeType" column="fecha_hora"/>
+
+        <many-to-one name="cliente" class="datos.Cliente" column="id_cliente" lazy="false" not-null="true"/>
+     <!--   <one-to-one name="servicio" class="datos.Servicio"/>	-->
+        <many-to-one name="profesional" class="datos.Profesional" column="id_profesional" lazy="false" not-null="true"/>
+
     </class>
 </hibernate-mapping>

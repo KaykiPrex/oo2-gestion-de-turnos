@@ -1,12 +1,16 @@
 package dao;
 
-import datos.Contacto;
+import datos.Especialidad;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
-public class ContactoDao {
-
+public class EspecialidadDao {
     private static Session session;
     private Transaction tx;
 
@@ -20,60 +24,64 @@ public class ContactoDao {
         throw new HibernateException("ERROR en la capa de acceso a datos", he);
     }
 
-    // ** Método para agregar un Contacto **
-    public int agregar(Contacto objeto) {
-        int id = 0;
+    public long agregar(Especialidad objeto) {
+        long id = 0;
         try {
             iniciaOperacion();
             id = Integer.parseInt(session.save(objeto).toString());
-            tx.commit();
         } catch (HibernateException he) {
             manejaExcepcion(he);
-            throw he;
         } finally {
             session.close();
         }
         return id;
     }
 
-    // ** Método para traer un Contacto **
-    public Contacto traer(long idContacto) {
-        Contacto objeto = null;
-        try {
-            iniciaOperacion();
-            objeto = (Contacto) session.get(Contacto.class, idContacto);
-        } finally {
-            session.close();
-        }
-        return objeto;
-    }
-
-    // ** Método para actualizar un Contacto **
-    public void actualizar(Contacto objeto) {
+    public void actualizar(Especialidad objeto) {
         try {
             iniciaOperacion();
             session.update(objeto);
             tx.commit();
         } catch (HibernateException he) {
             manejaExcepcion(he);
-            throw he;
         } finally {
             session.close();
         }
     }
 
-    // ** Método para eliminar un Contacto **
-    public void eliminar(Contacto objeto) {
+    public void eliminar(Especialidad objeto) {
         try {
             iniciaOperacion();
             session.delete(objeto);
             tx.commit();
         } catch (HibernateException he) {
             manejaExcepcion(he);
-            throw he;
         } finally {
             session.close();
         }
+    }
+
+    public Especialidad traer(long idEspecialidad) {
+        Especialidad objeto = null;
+        try {
+            iniciaOperacion();
+            objeto = (Especialidad) session.get(Especialidad.class, idEspecialidad);
+        } finally {
+            session.close();
+        }
+        return objeto;
+    }
+
+    public Especialidad traer(String nombre) {
+        Especialidad objeto = null;
+        try {
+            iniciaOperacion();
+
+            objeto = (Especialidad) session.createQuery("from Especialidad e where e.nombre = :nombre").setParameter("nombre", nombre).uniqueResult();
+        } finally {
+            session.close();
+        }
+        return objeto;
     }
 
 }

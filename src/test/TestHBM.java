@@ -1,7 +1,7 @@
 package test;
 
-import org.hibernate.Session;
 import dao.HibernateUtil;
+import org.hibernate.Session;
 
 public class TestHBM {
 

@@ -2,8 +2,8 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="datos.Contacto" table="contacto" >
-        <id name="id" column="id_persona">
+    <class name="datos.Contacto" table="contacto">
+        <id name="id" column="idcontacto">
             <generator class="foreign">
                 <param name="property">persona</param>
             </generator>
