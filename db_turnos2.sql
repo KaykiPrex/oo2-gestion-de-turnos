@@ -1,16 +1,14 @@
-
 CREATE DATABASE IF NOT EXISTS db_turnos2;
 use db_turnos2;
 CREATE TABLE persona (
-    id INT PRIMARY KEY AUTO_INCREMENT,
+    id_persona INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(100) NOT NULL,
     contrasena  VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE cliente (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-  
-    FOREIGN KEY (id) REFERENCES persona(id)
+    id_cliente INT PRIMARY KEY AUTO_INCREMENT,
+    FOREIGN KEY (id_cliente) REFERENCES persona(id_persona)
 );
 
 CREATE TABLE especialidad (
@@ -18,10 +16,9 @@ CREATE TABLE especialidad (
     nombre VARCHAR(100) NOT NULL
 );
 CREATE TABLE profesional (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    id_persona INT NOT NULL,
+    id_profesional INT PRIMARY KEY AUTO_INCREMENT,
     id_especialidad INT NOT NULL,
-    FOREIGN KEY (id_persona) REFERENCES persona(id),
+    FOREIGN KEY (id_profesional) REFERENCES persona(id_persona),
     FOREIGN KEY (id_especialidad) REFERENCES especialidad(id)
 );
 CREATE TABLE servicio (
@@ -29,18 +26,15 @@ CREATE TABLE servicio (
     nombre VARCHAR(100) NOT NULL,
     descripcion TEXT,
     precio DECIMAL(10,2) NOT NULL,
-    id_especialidad INT NOT NULL,
-    duracion VARCHAR (20) NOT NULL, 
-    FOREIGN KEY (id_especialidad) REFERENCES especialidad(id)
+    duracion VARCHAR (20) NOT NULL
 );
 
 CREATE TABLE contacto (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    id_persona INT NOT NULL,
+    id_persona INT PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(50) NOT NULL, 
     telefono VARCHAR(255) NOT NULL,
 	movil VARCHAR(255) NOT NULL,
-    FOREIGN KEY (id_persona) REFERENCES persona(id)
+    FOREIGN KEY (id_persona) REFERENCES persona(id_persona)
 );
 
 CREATE TABLE turno (
@@ -49,8 +43,8 @@ CREATE TABLE turno (
     id_profesional INT NOT NULL,
     id_servicio INT NOT NULL,
     fecha_hora DATETIME NOT NULL,
-    FOREIGN KEY (id_cliente) REFERENCES cliente(id),
-    FOREIGN KEY (id_profesional) REFERENCES profesional(id),
+    FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente),
+    FOREIGN KEY (id_profesional) REFERENCES profesional(id_profesional),
     FOREIGN KEY (id_servicio) REFERENCES servicio(id)
 );
 
@@ -60,5 +54,5 @@ CREATE TABLE disponibilidad (
     hora TIME NOT NULL,
     disponibilidad BOOLEAN DEFAULT TRUE,
 	id_profesional INT NOT NULL,
-	FOREIGN KEY (id_profesional) REFERENCES profesional(id)
+	FOREIGN KEY (id_profesional) REFERENCES profesional(id_profesional)
 );
