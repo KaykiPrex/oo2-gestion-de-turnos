@@ -1,10 +1,7 @@
 package test;
 
 import datos.*;
-import negocio.ContactoABM;
-import negocio.DisponibilidadABM;
-import negocio.EspecialidadABM;
-import negocio.PersonaABM;
+import negocio.*;
 
 import java.util.List;
 import java.util.Set;
@@ -51,5 +48,12 @@ public class TestProfesional {
         Disponibilidad disponibilidad2 = disponibilidadABM.traer(idDisponibilidad2);
         disponibilidadABM2.liberarDisponibilidad(disponibilidad2);
 
+        // Derivar turno de profesional
+        long idProfesional3 = 1L;
+        long idTurno = 1L;
+        Persona p3 = PersonaABM.getInstance().traerProfesional(idProfesional1);
+        Profesional prof3 = (Profesional) p3;
+        TurnoABM turnoABM = new TurnoABM();
+        turnoABM.derivar(idTurno,prof3);
     }
 }
