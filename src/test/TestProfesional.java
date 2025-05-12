@@ -45,7 +45,7 @@ public class TestProfesional {
         // Derivar turno de profesional
         TurnoABM turnoABM = new TurnoABM();
         System.out.println(turnoABM.traer(1L));
-        
+
         long idProfesional3 = 1L;
         long idTurno = 1L;
         Persona p3 = PersonaABM.getInstance().traerProfesional(7l);
