@@ -18,7 +18,7 @@ public class TestContacto {
 
 
         // ** Ejemplo de eliminar Contacto a Persona **
-        abmContacto.eliminar(1L);
+        // abmContacto.eliminar(1L);
     }
 
 }

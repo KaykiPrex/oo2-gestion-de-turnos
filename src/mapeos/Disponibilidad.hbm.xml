@@ -3,12 +3,12 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="datos.Disponibilidad" table="disponibilidad">
-        <id name="id" column="iddisponibilidad">
+        <id name="id" column="id">
             <generator class="identity"/>
         </id>
         <property name="fecha" type="org.hibernate.type.LocalDateType" column="fecha"/>
         <property name="hora" type="org.hibernate.type.LocalTimeType" column="hora"/>
-        <property name="disponible" type="boolean" column="disponible"/>
-        <many-to-one name="profesional" class="datos.Profesional" column="idpersona" not-null="true"/>
+        <property name="disponible" type="boolean" column="disponibilidad"/>
+        <many-to-one name="profesional" class="datos.Profesional" column="id_profesional" not-null="true"/>
     </class>
 </hibernate-mapping>

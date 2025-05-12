@@ -3,7 +3,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="datos.Especialidad" table="especialidad">
-        <id name="id" column="idespecialidad">
+        <id name="id" column="id">
             <generator class="identity"/>
         </id>
         <property name="nombre" type="string" column="nombre" unique="true"/>

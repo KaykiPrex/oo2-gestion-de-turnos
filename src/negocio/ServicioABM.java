@@ -11,8 +11,8 @@ public class ServicioABM {
         return dao.agregar(e);
     }
 
-    public Servicio traer(long idEspecialidad) {
-        return dao.traer(idEspecialidad);
+    public Servicio traer(long idServicio) {
+        return dao.traer(idServicio);
     }
 
     public Servicio traer(String nombre) {
@@ -23,4 +23,5 @@ public class ServicioABM {
         Servicio e = dao.traer(id);
         dao.eliminar(e);
     }
+
 }

@@ -9,7 +9,8 @@
         <property name="fechaHora" type="org.hibernate.type.LocalDateTimeType" column="fecha_hora"/>
 
         <many-to-one name="cliente" class="datos.Cliente" column="id_cliente" lazy="false" not-null="true"/>
-     <!--   <one-to-one name="servicio" class="datos.Servicio"/>	-->
+        <many-to-one name="servicio" class="datos.Servicio" column="id_servicio" not-null="true"
+                     lazy="false"/>
         <many-to-one name="profesional" class="datos.Profesional" column="id_profesional" lazy="false" not-null="true"/>
 
     </class>
