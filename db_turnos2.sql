@@ -4,7 +4,7 @@ use db_turnos2;
 CREATE TABLE persona (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(100) NOT NULL,
-    contraseÃ±a  VARCHAR(50) NOT NULL 
+    contrasena  VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE cliente (
