@@ -37,6 +37,7 @@ public class TurnoABM {
 	public void derivar(long idTurno, Profesional profesionalAsignado) {
 		Turno objeto = dao.traer(idTurno);
 		objeto.setProfesional(profesionalAsignado);
+		dao.actualizar(objeto);
 	}
 
 

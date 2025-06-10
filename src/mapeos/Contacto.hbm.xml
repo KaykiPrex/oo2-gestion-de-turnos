@@ -3,7 +3,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="datos.Contacto" table="contacto">
-        <id name="id" column="idcontacto">
+        <id name="id" column="id_persona">
             <generator class="foreign">
                 <param name="property">persona</param>
             </generator>

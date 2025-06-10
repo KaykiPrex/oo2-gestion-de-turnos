@@ -35,36 +35,38 @@ public class TestDisponibilidadProfesional {
 		
 	*/
 		
-		
-	/* 	//PASO 2. Se crea un Profesional
+
+		//PASO 2. Se crea un Profesional
+		/*
 	 	
 	 	EspecialidadABM abmEspe = new EspecialidadABM();
 	 	
-		Especialidad e1 = abmEspe.traer("Medico");
+		Especialidad e1 = abmEspe.traer("Profesor");
 		
-		Profesional p = new Profesional("Luca", "123456", null, e1);
+		Profesional p = new Profesional("Juan", "123456", null, e1);
 		
 		ProfesionalABM abmProf = new ProfesionalABM();
 			
 		abmProf.agregar(p);
-	*/		
-		
 
-	/* 	//PASO 3. Se crea la Disponibilidad de un Profesional
+		 */
+
+
+	 /*	//PASO 3. Se crea la Disponibilidad de un Profesional
 		
 		ProfesionalABM abmProf = new ProfesionalABM();
 		DisponibilidadABM abmDisp = new DisponibilidadABM();
 		
-		Profesional p = abmProf.traer(21L);
+		Profesional p = abmProf.traer(5L);
 		
 		abmProf.crearDisponibilidad(LocalDate.of(2025, 5, 18), LocalTime.now(), true, p);
 		
-	*/	
+*/
 		
 	/*	//PASO 4. Se muestran las Disponibilidades del Profesional
 	
 		ProfesionalABM abmProf = new ProfesionalABM();
-		Profesional p = abmProf.traer(21L);
+		Profesional p = abmProf.traer(5L);
 
 		Set<Disponibilidad> dispo = abmProf.verDisponibilidad(p);
 	

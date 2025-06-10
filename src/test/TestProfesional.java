@@ -9,51 +9,49 @@ import java.util.Set;
 public class TestProfesional {
 
     public static void main(String[] args) {
-        ContactoABM abm = new ContactoABM();
-        Contacto contacto = abm.traer(1);
-
-        EspecialidadABM especialidadABM = new EspecialidadABM();
-        especialidadABM.traer(1);
 
         DisponibilidadABM disponibilidadABM = new DisponibilidadABM();
-        Disponibilidad disponibilidad = disponibilidadABM.traer(1);
 
         List<Persona> personas = PersonaABM.getInstance().traer();
-        Persona p = PersonaABM.getInstance().traerProfesional(1);
+        Persona p = PersonaABM.getInstance().traerProfesional(5L);
         Profesional prof = (Profesional) p;
         Set<Disponibilidad> dis = prof.getDisponibilidades();
         Especialidad es = prof.getEspecialidad();
 
         // Traer Disponibilidad del profesional
-        long idProfesional1 = 1L;
-        Persona p1 = PersonaABM.getInstance().traerProfesional(idProfesional1);
+        Persona p1 = PersonaABM.getInstance().traerProfesional(5L);
         Profesional prof1 = (Profesional) p1;
         Set<Disponibilidad> disponibilidades = prof1.getDisponibilidades();
+        System.out.println(disponibilidades);
 
         // Traer Especialidad del profesional
-        long idProfesional2 = 1L;
-        Persona p2 = PersonaABM.getInstance().traerProfesional(idProfesional2);
+        Persona p2 = PersonaABM.getInstance().traerProfesional(5L);
         Profesional prof2 = (Profesional) p2;
         Especialidad especialidad = prof2.getEspecialidad();
-
-        // Reservar Disponibilidad del profesional
-        long idDisponibilidad1 = 1L;
-        DisponibilidadABM disponibilidadABM2 = new DisponibilidadABM();
-        Disponibilidad disponibilidad1 = disponibilidadABM.traer(idDisponibilidad1);
-        disponibilidadABM2.reservarDisponibilidad(disponibilidad1);
+        System.out.println(especialidad);
 
         // Liberar Disponibilidad del profesional
         long idDisponibilidad2 = 1L;
-        DisponibilidadABM disponibilidadABM3 = new DisponibilidadABM();
         Disponibilidad disponibilidad2 = disponibilidadABM.traer(idDisponibilidad2);
-        disponibilidadABM2.liberarDisponibilidad(disponibilidad2);
+        disponibilidadABM.liberarDisponibilidad(disponibilidad2);
+        System.out.println(disponibilidadABM.traer(idDisponibilidad2));
+
+        // Reservar Disponibilidad del profesional
+        long idDisponibilidad1 = 1L;
+        Disponibilidad disponibilidad1 = disponibilidadABM.traer(idDisponibilidad1);
+        disponibilidadABM.reservarDisponibilidad(disponibilidad1);
+        System.out.println(disponibilidadABM.traer(idDisponibilidad1));
 
         // Derivar turno de profesional
+        TurnoABM turnoABM = new TurnoABM();
+        System.out.println(turnoABM.traer(1L));
+
         long idProfesional3 = 1L;
         long idTurno = 1L;
-        Persona p3 = PersonaABM.getInstance().traerProfesional(idProfesional1);
+        Persona p3 = PersonaABM.getInstance().traerProfesional(7l);
         Profesional prof3 = (Profesional) p3;
-        TurnoABM turnoABM = new TurnoABM();
-        turnoABM.derivar(idTurno,prof3);
+        turnoABM.derivar(1L,prof3);
+        System.out.println(turnoABM.traer(1L));
+
     }
 }
