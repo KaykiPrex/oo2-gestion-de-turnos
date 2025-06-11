@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS db_turnos2;
-use db_turnos2;
+CREATE DATABASE IF NOT EXISTS db_turnos;
+use db_turnos;
 CREATE TABLE persona (
     id_persona INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(100) NOT NULL,
