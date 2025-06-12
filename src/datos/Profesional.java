@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Profesional extends Persona {
+	private long nroMatricula;
     private Especialidad especialidad;
     private Set<Disponibilidad> disponibilidades;
 
@@ -12,9 +13,18 @@ public class Profesional extends Persona {
 
     public Profesional(String name, String password, Contacto contacto, Especialidad especialidad) {
         super(name, password, contacto);
+        this.nroMatricula = 0;
         this.especialidad = especialidad;
-        this.disponibilidades = new HashSet();
+        this.disponibilidades = new HashSet<>();
     }
+
+	public long getNroMatricula() {
+		return nroMatricula;
+	}
+
+	public void setNroMatricula(long nroMatricula) {
+		this.nroMatricula = nroMatricula;
+	}
 
     public Especialidad getEspecialidad() {
         return especialidad;

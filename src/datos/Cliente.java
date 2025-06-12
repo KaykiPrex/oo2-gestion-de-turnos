@@ -6,12 +6,22 @@ import java.util.List;
 
 
 public class Cliente extends Persona {
+	private long nroCliente;
     private List<Turno> turnos;
 
-    public Cliente(String name, String password, Contacto contacto) {
+    public Cliente(String name, String password, Contacto contacto, int nroCliente) {
         super(name, password, contacto);
+        this.nroCliente = nroCliente;
         this.turnos = new ArrayList<Turno>();
     }
+
+	public long getNroCliente() {
+		return nroCliente;
+	}
+
+	public void setNroCliente(int nroCliente) {
+		this.nroCliente = nroCliente;
+	}
 
     public Cliente() {
     }

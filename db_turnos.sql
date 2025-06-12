@@ -8,9 +8,9 @@ CREATE TABLE persona (
 );
 
 CREATE TABLE cliente (
-    id_cliente INT PRIMARY KEY AUTO_INCREMENT,
+    id_persona INT PRIMARY KEY AUTO_INCREMENT,
     nro_cliente INT NOT NULL,
-    FOREIGN KEY (id_cliente) REFERENCES persona(id_persona)
+    FOREIGN KEY (id_persona) REFERENCES persona(id_persona)
 );
 
 CREATE TABLE especialidad (
@@ -18,10 +18,10 @@ CREATE TABLE especialidad (
     nombre VARCHAR(100) NOT NULL
 );
 CREATE TABLE profesional (
-    id_profesional INT PRIMARY KEY AUTO_INCREMENT,
+    id_persona INT PRIMARY KEY AUTO_INCREMENT,
     id_especialidad INT NOT NULL,
     nro_matricula INT NOT NULL,
-    FOREIGN KEY (id_profesional) REFERENCES persona(id_persona),
+    FOREIGN KEY (id_persona) REFERENCES persona(id_persona),
     FOREIGN KEY (id_especialidad) REFERENCES especialidad(id)
 );
 CREATE TABLE servicio (
