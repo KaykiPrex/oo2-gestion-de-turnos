@@ -1,7 +1,6 @@
 package negocio;
 
 import dao.PersonaDao;
-import datos.Contacto;
 import datos.Persona;
 
 import java.util.List;
@@ -48,7 +47,7 @@ public class PersonaABM {
     public Persona login(String nombre, String contrasena) throws Exception {
         Persona p = PersonaDao.getInstance().traer(nombre, contrasena);
         if (p == null) {
-            throw new Exception("No existe el usuario");
+            throw new Exception("No existe el usuario o la contraseña es incorrecta");
         }
         return p;
     }

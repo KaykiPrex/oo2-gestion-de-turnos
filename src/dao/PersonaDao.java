@@ -91,7 +91,7 @@ public class PersonaDao {
         return objeto;
     }
 
-    // ** Método para traer una Persona (Posterior Login) **
+    // ** Método para traer una Persona  **
     public Persona traer(String nombre, String contrasena) {
         Persona objeto = null;
         try {
@@ -101,7 +101,9 @@ public class PersonaDao {
                     .setParameter("nombre", nombre)
                     .setParameter("contrasena", contrasena)
                     .uniqueResult();
-        } finally {
+        } catch (HibernateException he) {
+        	manejaExcepcion(he);
+    	} finally {
             session.close();
         }
         return objeto;
