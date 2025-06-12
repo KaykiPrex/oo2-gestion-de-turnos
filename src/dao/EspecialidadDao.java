@@ -13,6 +13,15 @@ import org.hibernate.query.Query;
 public class EspecialidadDao {
     private static Session session;
     private Transaction tx;
+    private static EspecialidadDao instancia = null;
+    
+    protected EspecialidadDao() {}
+    
+    public static EspecialidadDao getInstance() {
+    	if (instancia == null)
+    		instancia = new EspecialidadDao();
+    	return instancia;
+    }
 
     private void iniciaOperacion() throws HibernateException {
         session = HibernateUtil.getSessionFactory().openSession();

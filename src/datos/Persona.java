@@ -1,17 +1,19 @@
 package datos;
 
-public class Persona {
+public abstract class Persona {
     private long id;
     private String nombre;
     private String contrasena;
+    private long dni;
     private Contacto contacto;
 
     public Persona() {
     }
 
-    public Persona(String nombre, String contrasena, Contacto contacto) {
+    public Persona(String nombre, String contrasena, long dni, Contacto contacto) {
         this.nombre = nombre;
         this.contrasena = contrasena;
+        this.dni = dni;
         this.contacto = contacto;
     }
 
@@ -38,6 +40,14 @@ public class Persona {
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
+
+	public long getDni() {
+		return dni;
+	}
+
+	public void setDni(long dni) {
+		this.dni = dni;
+	}
 
     public Contacto getContacto() {
         return contacto;

@@ -11,9 +11,9 @@ public class Profesional extends Persona {
     public Profesional() {
     }
 
-    public Profesional(String name, String password, Contacto contacto, Especialidad especialidad) {
-        super(name, password, contacto);
-        this.nroMatricula = 0;
+    public Profesional(String name, String password, long dni, Contacto contacto, long nroMatricula, Especialidad especialidad) {
+        super(name, password, dni, contacto);
+        this.nroMatricula = nroMatricula;
         this.especialidad = especialidad;
         this.disponibilidades = new HashSet<>();
     }

@@ -9,8 +9,8 @@ public class Cliente extends Persona {
 	private long nroCliente;
     private List<Turno> turnos;
 
-    public Cliente(String name, String password, Contacto contacto, int nroCliente) {
-        super(name, password, contacto);
+    public Cliente(String name, String password, long dni, Contacto contacto, long nroCliente) {
+        super(name, password, dni, contacto);
         this.nroCliente = nroCliente;
         this.turnos = new ArrayList<Turno>();
     }
@@ -19,7 +19,7 @@ public class Cliente extends Persona {
 		return nroCliente;
 	}
 
-	public void setNroCliente(int nroCliente) {
+	public void setNroCliente(long nroCliente) {
 		this.nroCliente = nroCliente;
 	}
 

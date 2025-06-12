@@ -8,7 +8,7 @@ public class TestPersona {
     public static void main(String[] args) {
 
         // ** Ejemplo del Registro **
-        PersonaABM.getInstance().registrar("Luca Lazarte", "123456", null);
+        // PersonaABM.getInstance().registrar("Luca Lazarte", "123456", null);
 
         // ** Ejemplo del Login **
         /*

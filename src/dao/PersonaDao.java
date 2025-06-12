@@ -34,12 +34,12 @@ public class PersonaDao {
         throw new HibernateException("ERROR en la capa de acceso a datos", he);
     }
 
-    // ** Método para agregar una Persona **
-    public int agregar(Persona objeto) {
-        int id = 0;
+    // ** Método para registrar una Persona **
+    public long registrarPersona(Persona objeto) {
+        long id = 0;
         try {
             iniciaOperacion();
-            id = Integer.parseInt(session.save(objeto).toString());
+            id = Long.parseLong(session.save(objeto).toString());
             tx.commit();
         } catch(HibernateException he) {
             manejaExcepcion(he);

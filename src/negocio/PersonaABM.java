@@ -29,11 +29,19 @@ public class PersonaABM {
     public List<Persona> traer() {
         return PersonaDao.getInstance().traer();
     }
-
-    // ** Registro de Usuario **
-    public int registrar(String nombre, String contrasena, Contacto contacto) {
-        Persona p = new Persona(nombre, contrasena, contacto);
-        return PersonaDao.getInstance().agregar(p);
+    
+    // ** Método genérico para registrar una Persona (Cliente o Profesional) **
+    public long registrar(Persona objeto) throws Exception {
+    	if(objeto == null) {
+    		throw new Exception("El objeto Persona no puede ser nulo");
+    	}
+    	if(objeto.getNombre() == null || objeto.getNombre().isEmpty()) {
+    		throw new Exception("El nombre de la persona no puede ser nulo o vacío");
+    	}
+    	if(objeto.getContrasena() == null || objeto.getContrasena().isEmpty()) {
+			throw new Exception("La contraseña de la persona no puede ser nula o vacía");
+		}
+    	return PersonaDao.getInstance().registrarPersona(objeto);
     }
 
     // ** Inicio de Sesión **
