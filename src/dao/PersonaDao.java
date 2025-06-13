@@ -13,7 +13,7 @@ public class PersonaDao {
 
     private static Session session;
     private Transaction tx;
-    private static PersonaDao instancia = null; // Patrón Singleton
+    private static PersonaDao instancia = null;
 
     protected PersonaDao() {
     }
@@ -43,7 +43,6 @@ public class PersonaDao {
             tx.commit();
         } catch(HibernateException he) {
             manejaExcepcion(he);
-            throw he;
         } finally {
             session.close();
         }
@@ -58,7 +57,6 @@ public class PersonaDao {
             tx.commit();
         } catch(HibernateException he) {
             manejaExcepcion(he);
-            throw he;
         } finally {
             session.close();
         }
@@ -124,7 +122,6 @@ public class PersonaDao {
         return lista;
     }
 
-
     public List<Persona> traer() throws HibernateException {
         List<Persona> lista = null;
         try {
@@ -143,7 +140,6 @@ public class PersonaDao {
             tx.commit();
         } catch(HibernateException he) {
             manejaExcepcion(he);
-            throw he;
         } finally {
             session.close();
         }

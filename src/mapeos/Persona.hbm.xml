@@ -9,7 +9,7 @@
         <property name="nombre" column="nombre" type="string"/>
         <property name="contrasena" column="contrasena" type="string"/>
         <property name="dni" column="dni" type="long"/>
-        <one-to-one name="contacto" class="datos.Contacto"/>
+        <one-to-one name="contacto" class="datos.Contacto" cascade="save-update"/>
 
         <joined-subclass name="datos.Profesional" table="profesional">
             <key column="id_persona"/>

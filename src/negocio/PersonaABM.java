@@ -1,6 +1,7 @@
 package negocio;
 
 import dao.PersonaDao;
+import datos.Contacto;
 import datos.Persona;
 
 import java.util.List;
@@ -43,7 +44,7 @@ public class PersonaABM {
     	return PersonaDao.getInstance().registrarPersona(objeto);
     }
 
-    // ** Inicio de Sesión **
+    // ** Inicio de Sesión (Cliente o Profesional) **
     public Persona login(String nombre, String contrasena) throws Exception {
         Persona p = PersonaDao.getInstance().traer(nombre, contrasena);
         if (p == null) {
@@ -51,6 +52,16 @@ public class PersonaABM {
         }
         return p;
     }
+    
+    // ** Agregar o actualizar el Contacto de una Persona (Cliente o Profesional) **
+    public void agregarContacto(Persona persona, Contacto contacto) throws Exception {
+    	if(persona == null) {
+    		throw new Exception("La persona no existe");
+    	}
+    	persona.setContacto(contacto);
+    	contacto.setPersona(persona);
+    	PersonaDao.getInstance().actualizar(persona);
+    }    
 
     // ** Eliminar Usuario **
     public void eliminar(long idPersona) throws Exception {
