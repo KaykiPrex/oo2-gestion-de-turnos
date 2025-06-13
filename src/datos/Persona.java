@@ -10,11 +10,10 @@ public abstract class Persona {
     public Persona() {
     }
 
-    public Persona(String nombre, String contrasena, long dni, Contacto contacto) {
+    public Persona(String nombre, String contrasena, long dni) {
         this.nombre = nombre;
         this.contrasena = contrasena;
         this.dni = dni;
-        this.contacto = contacto;
     }
 
     public long getId() {

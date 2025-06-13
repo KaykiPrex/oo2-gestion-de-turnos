@@ -39,9 +39,10 @@ public class PersonaDao {
         long id = 0;
         try {
             iniciaOperacion();
-            id = Long.parseLong(session.save(objeto).toString());
+            id = Integer.parseInt(session.save(objeto).toString());
             tx.commit();
         } catch(HibernateException he) {
+        	he.printStackTrace();
             manejaExcepcion(he);
         } finally {
             session.close();
@@ -143,6 +144,20 @@ public class PersonaDao {
         } finally {
             session.close();
         }
+    }
+    
+    public Persona traer(String nombre) {
+    	Persona objeto = null;
+    	try {
+    		iniciaOperacion();
+    		objeto = (Persona) session.createQuery("from Persona p where p.nombre = :nombre")
+    				.setParameter("nombre", nombre).uniqueResult();
+    	} catch (HibernateException he) {
+    		manejaExcepcion(he);
+    	} finally {
+    		session.close();
+    	}
+    	return objeto;
     }
 
 }

@@ -26,11 +26,10 @@
         <joined-subclass name="datos.Cliente" table="cliente">
             <key column="id_persona"/>
             <property name="nroCliente" column="nro_cliente" type="long"/>
-            <list name="turnos" table="turnos" inverse="true" lazy="true" fetch="select">
-                <key column="id_cliente" not-null="true"/>
-                <index column="orden"/>
-                <one-to-many class="datos.Turno"/>
-            </list>
+            <set name="turnos" table="turno" inverse="true" lazy="true" fetch="select">
+			    <key column="id_cliente" not-null="true"/>
+			    <one-to-many class="datos.Turno"/>
+			</set>
         </joined-subclass>
     </class>
 </hibernate-mapping>

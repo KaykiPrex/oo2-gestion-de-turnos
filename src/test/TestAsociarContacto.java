@@ -14,8 +14,7 @@ public class TestAsociarContacto {
 			Persona persona = PersonaABM.getInstance().login("Luca Lazarte", "12345678");
 			
 			Contacto nuevoContacto = new Contacto("luca.lazarte05@gmail.com", "12345678",
-					"1123456789");
-			nuevoContacto.setPersona(persona);
+					"1123456789", persona);
 			
 			PersonaABM.getInstance().agregarContacto(persona, nuevoContacto);
 			
