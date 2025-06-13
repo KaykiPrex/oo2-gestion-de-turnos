@@ -1,10 +1,14 @@
 package dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import datos.Disponibilidad;
+import datos.Especialidad;
 import datos.Profesional;
 
 public class ProfesionalDao {
@@ -83,15 +87,17 @@ public class ProfesionalDao {
 		}
 		return objeto;
 	}
-	
-	public void agregarDisponibilidad(Profesional p, Disponibilidad d) {
+
+	public List<Profesional> traerPorEspecialidad(Especialidad e){
+		List<Profesional> profesionales = new ArrayList<>();
 		try {
 			iniciaOperacion();
-			p.getDisponibilidades().add(d);
-			
+			profesionales = session.createQuery("from Profesional p where p.especialidad = :especialidad", Profesional.class).setParameter("especialidad", e).list();
 		} finally {
 			session.close();
 		}
+		return profesionales;
 	}
+
 	
 }

@@ -8,7 +8,6 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 public class EspecialidadDao {
     private static Session session;
@@ -92,5 +91,17 @@ public class EspecialidadDao {
         }
         return objeto;
     }
+    
+    public List<Especialidad> traer(){
+    	List<Especialidad> especialidades = new ArrayList<>();
+    	try {
+    		iniciaOperacion();
+    		especialidades = session.createQuery("from Especialidad", Especialidad.class).list();
+    	} finally {
+    		session.close();
+    	}
+    	return especialidades;
+    }
+
 
 }
