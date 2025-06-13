@@ -1,0 +1,25 @@
+package test;
+
+import java.util.List;
+
+import datos.Servicio;
+import negocio.ServicioABM;
+
+public class TestServiciosDisponibles {
+	
+	public static void main(String[] args) {
+		
+		try {
+			
+			List<Servicio> servicios = ServicioABM.getInstance().traerTodos();
+			for (Servicio s : servicios) {
+				System.out.println(s.toString());
+			}
+			 
+		} catch (Exception e) {
+			System.out.println("Error al obtener los servicios: " + e.getMessage());
+		}
+		
+	}
+	
+}

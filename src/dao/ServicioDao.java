@@ -1,21 +1,27 @@
 package dao;
 
-import datos.Especialidad;
 import datos.Servicio;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-
 public class ServicioDao {
 
     private Session session;
     private Transaction tx;
+    private static ServicioDao instancia = null;
+    
+    protected ServicioDao() {
+    }
+    
+    public static ServicioDao getInstance() {
+    	if (instancia == null)
+    		instancia = new ServicioDao();
+    	return instancia;
+    }
 
     private void iniciaOperacion() throws HibernateException {
         session = HibernateUtil.getSessionFactory().openSession();
@@ -89,4 +95,15 @@ public class ServicioDao {
         return objeto;
     }
 
+    public List<Servicio> traerTodos() {
+    	List<Servicio> lista = null;
+    	try {
+    		iniciaOperacion();
+    		lista = session.createQuery("from Servicio", Servicio.class).list();
+    	} finally {
+    		session.close();
+    	}
+    	return lista;
+    }
+    
 }
