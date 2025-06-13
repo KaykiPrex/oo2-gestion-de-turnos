@@ -2,12 +2,14 @@ package negocio;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Set;
 
 
 import dao.DisponibilidadDao;
 import dao.ProfesionalDao;
 import datos.Disponibilidad;
+import datos.Especialidad;
 import datos.Profesional;
 
 public class ProfesionalABM {
@@ -40,11 +42,24 @@ public class ProfesionalABM {
 		return list;
 	}
 	
-	public long crearDisponibilidad(LocalDate date, LocalTime time,  boolean bloked, Profesional p) {
+	public void crearDisponibilidadesDesocupadas(LocalDate fechaDesde, LocalDate fechaHasta, LocalTime horaDesde, LocalTime horaHasta
+			,  Long duracion, Profesional p) {
 		DisponibilidadDao disponibilidadDao = new DisponibilidadDao();
-		Disponibilidad d = new Disponibilidad(date, time, bloked, p);
-		disponibilidadDao.agregar(d);
-		dao.actualizar(p);
-		return d.getId();
+		LocalTime horaActual = horaDesde;
+		LocalDate fechaActual = fechaDesde;
+		while(!fechaActual.isAfter(fechaHasta) ) {
+			while(!horaActual.plusMinutes(duracion).isAfter(horaHasta)) {
+				Disponibilidad d = new Disponibilidad(fechaActual, horaActual, false, p);
+				disponibilidadDao.agregar(d);
+				dao.actualizar(p);
+				horaActual = horaActual.plusMinutes(duracion);
+			}
+			fechaActual = fechaActual.plusDays(1);
+		}
 	}
+
+	public List<Profesional> traerPorEspecialidad(Especialidad e){
+		return dao.traerPorEspecialidad(e);
+	}
+
 }

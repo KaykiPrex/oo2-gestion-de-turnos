@@ -1,5 +1,7 @@
 package negocio;
 
+import java.util.List;
+
 import dao.EspecialidadDao;
 import datos.Especialidad;
 
@@ -25,6 +27,10 @@ public class EspecialidadABM {
         return EspecialidadDao.getInstance().traer(nombre);
     }
 
+    public List<Especialidad> traer(){
+    	return EspecialidadDao.getInstance().traer();
+    }
+    
     public void eliminar(long id) {
         Especialidad e = EspecialidadDao.getInstance().traer(id);
         EspecialidadDao.getInstance().eliminar(e);
