@@ -13,7 +13,7 @@ public class PersonaDao {
 
     private static Session session;
     private Transaction tx;
-    private static PersonaDao instancia = null; // Patrón Singleton
+    private static PersonaDao instancia = null;
 
     protected PersonaDao() {
     }
@@ -34,16 +34,15 @@ public class PersonaDao {
         throw new HibernateException("ERROR en la capa de acceso a datos", he);
     }
 
-    // ** Método para agregar una Persona **
-    public int agregar(Persona objeto) {
-        int id = 0;
+    // ** Método para registrar una Persona **
+    public long registrarPersona(Persona objeto) {
+        long id = 0;
         try {
             iniciaOperacion();
-            id = Integer.parseInt(session.save(objeto).toString());
+            id = Long.parseLong(session.save(objeto).toString());
             tx.commit();
         } catch(HibernateException he) {
             manejaExcepcion(he);
-            throw he;
         } finally {
             session.close();
         }
@@ -58,7 +57,6 @@ public class PersonaDao {
             tx.commit();
         } catch(HibernateException he) {
             manejaExcepcion(he);
-            throw he;
         } finally {
             session.close();
         }
@@ -91,7 +89,7 @@ public class PersonaDao {
         return objeto;
     }
 
-    // ** Método para traer una Persona (Posterior Login) **
+    // ** Método para traer una Persona  **
     public Persona traer(String nombre, String contrasena) {
         Persona objeto = null;
         try {
@@ -101,7 +99,9 @@ public class PersonaDao {
                     .setParameter("nombre", nombre)
                     .setParameter("contrasena", contrasena)
                     .uniqueResult();
-        } finally {
+        } catch (HibernateException he) {
+        	manejaExcepcion(he);
+    	} finally {
             session.close();
         }
         return objeto;
@@ -122,7 +122,6 @@ public class PersonaDao {
         return lista;
     }
 
-
     public List<Persona> traer() throws HibernateException {
         List<Persona> lista = null;
         try {
@@ -141,7 +140,6 @@ public class PersonaDao {
             tx.commit();
         } catch(HibernateException he) {
             manejaExcepcion(he);
-            throw he;
         } finally {
             session.close();
         }

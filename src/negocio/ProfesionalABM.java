@@ -46,6 +46,5 @@ public class ProfesionalABM {
 		disponibilidadDao.agregar(d);
 		dao.actualizar(p);
 		return d.getId();
-		
 	}
 }

@@ -1,17 +1,19 @@
 package datos;
 
-public class Persona {
+public abstract class Persona {
     private long id;
     private String nombre;
     private String contrasena;
+    private long dni;
     private Contacto contacto;
 
     public Persona() {
     }
 
-    public Persona(String nombre, String contrasena, Contacto contacto) {
+    public Persona(String nombre, String contrasena, long dni, Contacto contacto) {
         this.nombre = nombre;
         this.contrasena = contrasena;
+        this.dni = dni;
         this.contacto = contacto;
     }
 
@@ -39,6 +41,14 @@ public class Persona {
         this.contrasena = contrasena;
     }
 
+	public long getDni() {
+		return dni;
+	}
+
+	public void setDni(long dni) {
+		this.dni = dni;
+	}
+
     public Contacto getContacto() {
         return contacto;
     }
@@ -49,7 +59,7 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Persona [id=" + id + ", nombre=" + nombre + ", contrasena=" + contrasena + ", contacto=" + contacto + "]";
+        return "Persona [id=" + id + ", nombre=" + nombre + ", contacto=" + contacto + "]";
     }
 
 }

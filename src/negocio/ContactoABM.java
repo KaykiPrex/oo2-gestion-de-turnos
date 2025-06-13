@@ -11,6 +11,7 @@ public class ContactoABM {
         return dao.traer(idContacto);
     }
 
+    /*
     // ** Asignar un contacto a una Persona **
     public int asociar(String email, String telefonoFijo, String telefonoMovil, Persona persona) throws Exception {
         if (persona.getContacto() != null) {
@@ -19,6 +20,7 @@ public class ContactoABM {
         Contacto c = new Contacto(email, telefonoFijo, telefonoMovil, persona);
         return dao.agregar(c);
     }
+    */
 
     // ** Modificar un contacto a una Persona **
     public void modificar(Contacto c) {

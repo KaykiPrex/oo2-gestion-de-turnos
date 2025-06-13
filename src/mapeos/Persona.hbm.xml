@@ -8,10 +8,12 @@
         </id>
         <property name="nombre" column="nombre" type="string"/>
         <property name="contrasena" column="contrasena" type="string"/>
-        <one-to-one name="contacto" class="datos.Contacto"/>
+        <property name="dni" column="dni" type="long"/>
+        <one-to-one name="contacto" class="datos.Contacto" cascade="save-update"/>
 
         <joined-subclass name="datos.Profesional" table="profesional">
-            <key column="id_profesional"/>
+            <key column="id_persona"/>
+            <property name="nroMatricula" column="nro_matricula" type="long"/>
             <many-to-one name="especialidad" class="datos.Especialidad" column="id_especialidad" not-null="true"
                          lazy="false"/>
             <set name="disponibilidades" table="disponibilidad" order-by="id asc" inverse="true"
@@ -22,7 +24,8 @@
         </joined-subclass>
 
         <joined-subclass name="datos.Cliente" table="cliente">
-            <key column="id_cliente"/>
+            <key column="id_persona"/>
+            <property name="nroCliente" column="nro_cliente" type="long"/>
             <list name="turnos" table="turnos" inverse="true" lazy="true" fetch="select">
                 <key column="id_cliente" not-null="true"/>
                 <index column="orden"/>
