@@ -10,10 +10,15 @@ public class Contacto {
     public Contacto() {
     }
 
-    public Contacto(String email, String telefonoFijo, String telefonoMovil) {
+    public Contacto(String email, String telefonoFijo, String telefonoMovil, Persona persona) {
         this.email = email;
         this.telefonoFijo = telefonoFijo;
         this.telefonoMovil = telefonoMovil;
+        this.persona = persona;
+    }
+    
+    public Contacto(Persona persona) {
+    	this.persona = persona;
     }
 
     public long getId() {

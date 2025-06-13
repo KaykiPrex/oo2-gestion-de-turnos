@@ -41,6 +41,9 @@ public class PersonaABM {
     	if(objeto.getContrasena() == null || objeto.getContrasena().isEmpty()) {
 			throw new Exception("La contraseña de la persona no puede ser nula o vacía");
 		}
+    	if(PersonaDao.getInstance().traer(objeto.getNombre()) != null) {
+    		throw new Exception("Ya existe una persona con el nombre: " + objeto.getNombre());
+    	}
     	return PersonaDao.getInstance().registrarPersona(objeto);
     }
 

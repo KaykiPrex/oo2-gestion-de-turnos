@@ -1,18 +1,17 @@
 package datos;
 
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class Cliente extends Persona {
 	private long nroCliente;
-    private List<Turno> turnos;
+    private Set<Turno> turnos;
 
-    public Cliente(String name, String password, long dni, Contacto contacto, long nroCliente) {
-        super(name, password, dni, contacto);
+    public Cliente(String name, String password, long dni, long nroCliente) {
+        super(name, password, dni);
         this.nroCliente = nroCliente;
-        this.turnos = new ArrayList<Turno>();
+        this.turnos = new HashSet<Turno>();
     }
 
 	public long getNroCliente() {
@@ -26,11 +25,11 @@ public class Cliente extends Persona {
     public Cliente() {
     }
 
-    public List<Turno> getTurnos() {
+    public Set<Turno> getTurnos() {
         return turnos;
     }
 
-    public void setTurnos(List<Turno> turnos) {
+    public void setTurnos(Set<Turno> turnos) {
         this.turnos = turnos;
     }
 
