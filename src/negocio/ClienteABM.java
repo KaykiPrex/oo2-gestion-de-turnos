@@ -8,38 +8,49 @@ import datos.Cliente;
 import datos.Turno;
 
 public class ClienteABM {
-	ClienteDao dao = new ClienteDao();
+	private static ClienteABM instancia = null;
+	
+	protected ClienteABM() {
+	}
+	 
+	public static ClienteABM getInstance() {
+		if(instancia == null) 
+			instancia = new ClienteABM();
+		return instancia;
+	}
 
 	public long agregar(Cliente objeto) {
-		return dao.agregar(objeto);
+		return ClienteDao.getInstance().agregar(objeto);
 	}
+	
 	public Cliente traer(long id) {
-		return dao.traer(id);
+		return ClienteDao.getInstance().traer(id);
 	}
-
+	
+	public Cliente traer(String nombre) {
+		return ClienteDao.getInstance().traer(nombre);
+	}
+	
+	public void actualizar(Cliente objeto) {
+		ClienteDao.getInstance().actualizar(objeto);
+	}
+	
 	public void modificarFHTurno(Cliente cliente, long idTurno, LocalDateTime fechaHora) throws Exception{
-		TurnoDao turnoDao = new TurnoDao();
-		Turno t = turnoDao.traer(idTurno);
+		Turno t = TurnoDao.getInstance().traer(idTurno);
 
 		if(t.getCliente().getId()!=cliente.getId()) throw new Exception("ERROR Este turno no le pertenece al cliente que quiere modificarlo");
 
 		t.setFechaHora(fechaHora);
-		turnoDao.actualizar(t);
+		TurnoDao.getInstance().actualizar(t);
 	}
-
-    public void cancelar(int idCliente, int idTurno) throws Exception {
-        Turno turno= dao.traerTurno(idCliente, idTurno);
-        if (turno==null) {
-            throw new Exception("no existe el turno");
-        }
-        dao.cancelarTurno(turno);
-    }
-
-    public void pedirTurno(Cliente cliente, Turno turno) {
-        dao.pedirTurno(cliente, turno);
-    }
+	
     public Turno traerTurno(int idCliente, int idTurno) throws Exception {
-        return dao.traerTurno(idCliente, idTurno);
+        return ClienteDao.getInstance().traerTurno(idCliente, idTurno);
     }
+
+	public void actualizarTurnos(Cliente cliente, Turno t) {
+		cliente.getTurnos().add(t);
+		ClienteDao.getInstance().actualizar(cliente);
+	}
 
 }

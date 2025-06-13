@@ -44,7 +44,7 @@ public class Disponibilidad {
         this.hora = hora;
     }
 
-    public boolean getDisponible() {
+    public boolean isDisponible() {
         return disponible;
     }
 

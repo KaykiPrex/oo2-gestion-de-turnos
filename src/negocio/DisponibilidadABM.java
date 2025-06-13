@@ -8,34 +8,43 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class DisponibilidadABM {
-    DisponibilidadDao dao = new DisponibilidadDao();
+    private static DisponibilidadABM instancia = null;
+    
+    protected DisponibilidadABM() {
+    }
+    
+    public static DisponibilidadABM getInstance() {
+		if (instancia == null) 
+			instancia = new DisponibilidadABM();
+		return instancia;
+	}
 
     public long agregar(Disponibilidad d) {
-        return dao.agregar(d);
+        return DisponibilidadDao.getInstance().agregar(d);
     }
 
     public int agregar(LocalDate date, LocalTime time, boolean isBlocked, Profesional profesional) {
         Disponibilidad c = new Disponibilidad(date, time, isBlocked, profesional);
-        return dao.agregar(c);
+        return DisponibilidadDao.getInstance().agregar(c);
     }
 
     public Disponibilidad traer(long idDisponibilidad) {
-        return dao.traer(idDisponibilidad);
+        return DisponibilidadDao.getInstance().traer(idDisponibilidad);
     }
 
 
     public void modificar(Disponibilidad d) {
-        dao.actualizar(d);
+    	DisponibilidadDao.getInstance().actualizar(d);
     }
 
     public void reservarDisponibilidad(Disponibilidad d) {
         d.setDisponible(false);
-        dao.actualizar(d);
+        DisponibilidadDao.getInstance().actualizar(d);
     }
 
     public void liberarDisponibilidad(Disponibilidad d) {
         d.setDisponible(true);
-        dao.actualizar(d);
+        DisponibilidadDao.getInstance().actualizar(d);
     }
 
 }

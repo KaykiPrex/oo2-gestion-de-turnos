@@ -20,14 +20,8 @@ public class TestRegistro {
 			System.out.println("Error al registrar cliente: " + e.getMessage());
 		}
 		
-		// ** Creo una especialidad para el profesional **
-		Especialidad especialidad = new Especialidad("Cardiología");
-		try {
-			EspecialidadABM.getInstance().agregar(especialidad);
-			System.out.println("Especialidad agregada exitosamente: " + especialidad.getNombre());
-		} catch (Exception e) {
-			System.out.println("Error al agregar especialidad: " + e.getMessage());
-		}
+		// ** Traigo una especialidad de la base de datos para el profesional **
+		Especialidad especialidad = EspecialidadABM.getInstance().traer("Masajista");
 		
 		// ** Registro de un profesional con la especialidad creada **
 		Profesional profesional = new Profesional("Eric Boedo", "87654321", 46234869, 1235, especialidad);

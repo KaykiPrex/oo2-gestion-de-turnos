@@ -11,13 +11,11 @@ public class TestVerProfesionalPorEspecialidad {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		EspecialidadABM espeABM = new EspecialidadABM();
-		ProfesionalABM profABM = new ProfesionalABM();
 		
-		Especialidad especialidad = espeABM.traer("Cardiología");
+		Especialidad especialidad = EspecialidadABM.getInstance().traer("Cardiología");
 		if(especialidad != null) {
 			System.out.println("Los profesionales  del Sistema con Especialidad: "+ especialidad.getNombre() +" son los siguientes:");
-			List<Profesional> profesionales = profABM.traerPorEspecialidad(especialidad);
+			List<Profesional> profesionales = ProfesionalABM.getInstance().traerPorEspecialidad(especialidad);
 			if(profesionales.isEmpty() || profesionales == null) {
 				System.out.println("ERROR: Esta especialidad no tiene profesionales asociados.");
 			} else {

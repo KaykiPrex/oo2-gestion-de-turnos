@@ -14,7 +14,18 @@ import datos.Profesional;
 public class DisponibilidadDao {
     private static Session session;
     private Transaction tx;
+    private static DisponibilidadDao instancia = null;
 
+    protected DisponibilidadDao() {
+    }
+    
+    public static DisponibilidadDao getInstance() {
+    	if(instancia == null)
+    		instancia = new DisponibilidadDao();
+    	return instancia;
+    }
+    
+    
     private void iniciaOperacion() throws HibernateException {
         session = HibernateUtil.getSessionFactory().openSession();
         tx = session.beginTransaction();

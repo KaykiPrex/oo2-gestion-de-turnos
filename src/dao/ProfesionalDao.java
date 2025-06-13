@@ -7,7 +7,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import datos.Disponibilidad;
 import datos.Especialidad;
 import datos.Profesional;
 
@@ -15,6 +14,16 @@ public class ProfesionalDao {
 	
 	private static Session session;
 	private Transaction tx;
+	private static ProfesionalDao instancia = null;
+	
+	protected ProfesionalDao() {
+	}
+	
+	public static ProfesionalDao getInstance() {
+		if(instancia == null)
+			instancia = new ProfesionalDao();
+		return instancia;
+	}
 	
 	private void iniciaOperacion() throws HibernateException{
 		session = HibernateUtil.getSessionFactory().openSession();

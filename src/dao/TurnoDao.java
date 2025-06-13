@@ -9,6 +9,16 @@ import datos.Turno;
 public class TurnoDao {
     private static Session session;
     private Transaction tx;
+    private static TurnoDao instancia = null;
+    
+    protected TurnoDao() {
+    }
+    
+    public static TurnoDao getInstance() {
+    	if(instancia == null)
+    		instancia = new TurnoDao();
+    	return instancia;
+    }
 
     private void iniciaOperacion() throws HibernateException {
         session = HibernateUtil.getSessionFactory().openSession();

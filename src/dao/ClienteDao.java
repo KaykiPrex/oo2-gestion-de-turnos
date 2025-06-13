@@ -2,6 +2,8 @@ package dao;
 
 import datos.Cliente;
 import datos.Turno;
+
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -9,6 +11,16 @@ import org.hibernate.Transaction;
 public class ClienteDao {
     private static Session session;
     private Transaction tx;
+    private static ClienteDao instancia = null;
+    
+    protected ClienteDao() {
+    }
+    
+    public static ClienteDao getInstance() {
+    	if(instancia == null)
+    		instancia = new ClienteDao();
+    	return instancia;
+    }
 
     private void iniciaOperacion() throws HibernateException {
         session = HibernateUtil.getSessionFactory().openSession();
@@ -62,11 +74,26 @@ public class ClienteDao {
         try {
             iniciaOperacion();
             objeto = (Cliente) session.get(Cliente.class, id);
+            Hibernate.initialize(objeto.getTurnos());
         } finally {
             session.close();
         }
         return objeto;
     }
+    
+    public Cliente traer(String nombre) {
+		Cliente objeto = null;
+		try {
+			iniciaOperacion();
+			objeto = (Cliente) session.createQuery("from Cliente c where c.nombre = :nombre")
+					.setParameter("nombre", nombre)
+					.uniqueResult();
+			Hibernate.initialize(objeto.getTurnos());
+		} finally {
+			session.close();
+		}
+		return objeto;
+	}
 
     public void pedirTurno(Cliente cliente, Turno turno) {
 
@@ -74,29 +101,6 @@ public class ClienteDao {
         cliente.getTurnos().add(turno);
         session.update(cliente);
         session.getTransaction().commit();
-
-    }
-
-
-    public void cancelarTurno(Turno turno) throws HibernateException {
-        try {
-            iniciaOperacion();
-            Turno turnoaux = (Turno) session.get(Turno.class, turno.getId());
-            if (turno == null) {
-                throw new RuntimeException("Turno no encontrado");
-            }
-
-            Cliente cliente = turno.getCliente();
-            if (cliente != null) {
-                cliente.getTurnos().remove(turno);// se lo borra al cliente
-                session.update(cliente);
-
-            }
-            session.delete(turno);// lo borra de la db
-            session.getTransaction().commit();
-        } catch (HibernateException e) {
-            manejaExcepcion(e);
-        }
 
     }
 

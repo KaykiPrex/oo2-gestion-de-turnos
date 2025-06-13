@@ -7,7 +7,7 @@ public class TestAgregarEspecialidad {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Especialidad e1 = new Especialidad("Traumatologo");
+		Especialidad e1 = new Especialidad("Masajista");
 		EspecialidadABM especialidadABM = new EspecialidadABM();
 		
 		try {
