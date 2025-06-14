@@ -1,5 +1,7 @@
 package dao;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,7 +26,6 @@ public class DisponibilidadDao {
     		instancia = new DisponibilidadDao();
     	return instancia;
     }
-    
     
     private void iniciaOperacion() throws HibernateException {
         session = HibernateUtil.getSessionFactory().openSession();
@@ -99,4 +100,27 @@ public class DisponibilidadDao {
             session.close();
         }
     }
+    
+    public Set<Disponibilidad> traerPosteriores (Profesional p) {
+        Set<Disponibilidad> lista = new HashSet<Disponibilidad>();
+        try {
+            iniciaOperacion();
+            LocalDate hoy = LocalDate.now();
+            LocalTime ahora = LocalTime.now();
+            Query<Disponibilidad> query = session.createQuery(
+            		"from Disponibilidad d " +
+            		"where d.profesional.id = :id " +
+            		"and (d.fecha > :hoy or (d.fecha = :hoy and d.hora >= :ahora))",
+            		Disponibilidad.class
+            );
+            query.setParameter("id", p.getId());
+            query.setParameter("hoy", hoy);
+            query.setParameter("ahora", ahora);
+            lista.addAll(query.getResultList());
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+    
 }

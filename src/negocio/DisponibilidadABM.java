@@ -6,6 +6,7 @@ import datos.Profesional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Set;
 
 public class DisponibilidadABM {
     private static DisponibilidadABM instancia = null;
@@ -45,6 +46,14 @@ public class DisponibilidadABM {
     public void liberarDisponibilidad(Disponibilidad d) {
         d.setDisponible(true);
         DisponibilidadDao.getInstance().actualizar(d);
+    }
+    
+    public Set<Disponibilidad> traerPosterior(Profesional p) throws Exception{
+    	Set<Disponibilidad> disponibilidades = DisponibilidadDao.getInstance().traer(p);
+    	if (disponibilidades.isEmpty()) {
+			throw new Exception("No hay disponibilidades para el profeisonal: " + p.getNombre());
+		}
+    	return disponibilidades;
     }
 
 }

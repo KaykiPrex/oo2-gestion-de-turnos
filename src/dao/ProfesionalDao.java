@@ -3,6 +3,7 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -87,11 +88,10 @@ public class ProfesionalDao {
 		Profesional objeto = null;
 		try {
 			iniciaOperacion();
-		 String hql = "from Profesional p where p.nombre = :nombre";
+			String hql = "from Profesional p where p.nombre = :nombre";
 			objeto = (Profesional) session.createQuery(hql).setParameter("nombre", nombre).uniqueResult();
-		
-			
-		}finally {
+			Hibernate.initialize(objeto.getDisponibilidades());
+		} finally {
 			session.close();
 		}
 		return objeto;

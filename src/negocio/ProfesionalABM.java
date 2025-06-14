@@ -53,17 +53,18 @@ public class ProfesionalABM {
 	
 	public void crearDisponibilidadesDesocupadas(LocalDate fechaDesde, LocalDate fechaHasta, LocalTime horaDesde, LocalTime horaHasta
 			,  Long duracion, Profesional p) {
-		LocalTime horaActual = horaDesde;
 		LocalDate fechaActual = fechaDesde;
 		while(!fechaActual.isAfter(fechaHasta) ) {
+			LocalTime horaActual = horaDesde;
 			while(!horaActual.plusMinutes(duracion).isAfter(horaHasta)) {
 				Disponibilidad d = new Disponibilidad(fechaActual, horaActual, true, p);
+				p.getDisponibilidades().add(d);
 				DisponibilidadDao.getInstance().agregar(d);
-				ProfesionalDao.getInstance().actualizar(p);
 				horaActual = horaActual.plusMinutes(duracion);
 			}
 			fechaActual = fechaActual.plusDays(1);
 		}
+		ProfesionalDao.getInstance().actualizar(p);
 	}
 
 	public List<Profesional> traerPorEspecialidad(Especialidad e){
