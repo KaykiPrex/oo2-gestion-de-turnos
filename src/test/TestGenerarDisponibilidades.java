@@ -11,6 +11,9 @@ public class TestGenerarDisponibilidades {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+		// Este test permite generar disponibilidades desocupadas automaticamente a un profesional
+		// Dando como excepcion si el profesional no existe, o si las fechas/horas son incorrectas.
+		
 		Profesional profesional = ProfesionalABM.getInstance().traer("Eric Boedo");
 
 		/// SE DETERMINA LA FECHA DONDE SE EMPEZARAN A GENERAR LAS DISPONIBILIDADES 
@@ -28,12 +31,15 @@ public class TestGenerarDisponibilidades {
 		/// SE DETERMINA LA DURACION DE CADA DISPONIBILIDAD EN MINUTOS
 		Long duracionEnMinutos = 30L;
 		
+		try{
+			ProfesionalABM.getInstance().crearDisponibilidadesDesocupadas(fechaDesde, fechaHasta, horaInicio, horaFin, duracionEnMinutos, profesional);
+		
 		System.out.println("Se le generaran disponibilidades desocupadas automaticamente al profesional llamado: " + profesional.getNombre() + " con Matricula: " + profesional.getNroMatricula());
 		System.out.println("Las disponibilidades se generaran desde la fecha " + fechaDesde + " hasta " + fechaHasta + "\ny desde la hora " + horaInicio + " hasta " + horaFin + ", con una duracion de " + duracionEnMinutos + " minutos.");
-		ProfesionalABM.getInstance().crearDisponibilidadesDesocupadas(fechaDesde, fechaHasta, horaInicio, horaFin, duracionEnMinutos, profesional);
-		
 		System.out.println("Disponibilidades generadas correctamente!!");
-		
+		} catch (Exception e) {
+			System.out.println("ERROR al generar disponibilidades: " + e.getMessage());
+		}
 	}
 
 }

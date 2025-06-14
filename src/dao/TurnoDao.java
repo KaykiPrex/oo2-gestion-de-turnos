@@ -1,5 +1,6 @@
 package dao;
 
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -72,6 +73,9 @@ public class TurnoDao {
         try {
             iniciaOperacion();
             objeto = (Turno) session.get(Turno.class, id);
+            if (objeto != null) {
+				Hibernate.initialize(objeto.getProfesional().getDisponibilidades());
+			}
         } finally {
             session.close();
         }

@@ -12,20 +12,22 @@ public class TestVerProfesionalPorEspecialidad {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Especialidad especialidad = EspecialidadABM.getInstance().traer("Cardiología");
-		if(especialidad != null) {
-			System.out.println("Los profesionales  del Sistema con Especialidad: "+ especialidad.getNombre() +" son los siguientes:");
+		// Este test permite ver los profesionales asociados a una especialidad en el sistema
+		// Dando excepciones si la especialidad no existe o si no hay profesionales asociados a esa especialidad.
+		
+		try {
+			Especialidad especialidad = EspecialidadABM.getInstance().traer("Masajista");
 			List<Profesional> profesionales = ProfesionalABM.getInstance().traerPorEspecialidad(especialidad);
-			if(profesionales.isEmpty() || profesionales == null) {
-				System.out.println("ERROR: Esta especialidad no tiene profesionales asociados.");
-			} else {
-				for(Profesional p : profesionales) {
-					System.out.println(p.toString());
-				}
+			System.out.println("Los profesionales  del Sistema con Especialidad: "+ especialidad.getNombre() +" son los siguientes:");
+			for(Profesional p : profesionales) {
+				System.out.println(p.toString());
 			}
-		} else {
-			System.out.println("Error: No existe la especialidad buscada.");
+			
+			
+		} catch (Exception e) {
+			System.out.println("Error al buscar profesionales por especialidad: " + e.getMessage());
 		}
+		
 		
 		
 	}

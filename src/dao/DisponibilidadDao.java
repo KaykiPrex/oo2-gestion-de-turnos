@@ -112,4 +112,21 @@ public class DisponibilidadDao {
         return lista;
     }
     
+    public Disponibilidad traer(LocalDate fecha, LocalTime hora, Profesional profesional) {
+    	Disponibilidad objeto = null;
+    	try {
+    		iniciaOperacion();
+    		String hql = "FROM Disponibilidad d WHERE d.fecha = :fecha AND d.hora = :hora AND d.profesional = :profesional";
+    	    Query<Disponibilidad> query = session.createQuery(hql, Disponibilidad.class);
+    	    query.setParameter("fecha", fecha);
+    	    query.setParameter("hora", hora);
+    	    query.setParameter("profesional", profesional);
+    	    objeto = query.uniqueResult();
+		
+    	} finally {
+    		session.close();
+    	}
+    	return objeto;
+    }
+    
 }
