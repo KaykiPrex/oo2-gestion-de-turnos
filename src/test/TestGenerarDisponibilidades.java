@@ -12,7 +12,8 @@ public class TestGenerarDisponibilidades {
 		// TODO Auto-generated method stub
 		
 		// Este test permite generar disponibilidades desocupadas automaticamente a un profesional
-		// Dando como excepcion si el profesional no existe, o si las fechas/horas son incorrectas.
+		// Dando como excepcion si el profesional no existe, si las fechas/horas son incorrectas 
+		// o si el profesional ya tiene todas las disponibilidades creadas en el rango elegido.
 		
 		Profesional profesional = ProfesionalABM.getInstance().traer("Eric Boedo");
 
@@ -26,7 +27,7 @@ public class TestGenerarDisponibilidades {
 		LocalTime horaInicio = LocalTime.of(10, 00);
 		
 		/// SE DETERMINA LA HORA DONDE SE TERMINARAN DE GENERAR LAS DISPONIBILIDADES DE CADA DIA
-		LocalTime horaFin = LocalTime.of(18, 30);
+		LocalTime horaFin = LocalTime.of(20, 30);
 		
 		/// SE DETERMINA LA DURACION DE CADA DISPONIBILIDAD EN MINUTOS
 		Long duracionEnMinutos = 30L;
