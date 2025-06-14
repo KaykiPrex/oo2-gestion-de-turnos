@@ -3,8 +3,10 @@ package negocio;
 import java.time.LocalDateTime;
 
 import dao.ClienteDao;
+import dao.DisponibilidadDao;
 import dao.TurnoDao;
 import datos.Cliente;
+import datos.Disponibilidad;
 import datos.Turno;
 
 public class ClienteABM {
@@ -37,9 +39,41 @@ public class ClienteABM {
 	
 	public void modificarFHTurno(Cliente cliente, long idTurno, LocalDateTime fechaHora) throws Exception{
 		Turno t = TurnoDao.getInstance().traer(idTurno);
-
-		if(t.getCliente().getId()!=cliente.getId()) throw new Exception("ERROR Este turno no le pertenece al cliente que quiere modificarlo");
-
+		
+		if(t == null) {
+			throw new Exception("ERROR: El turno no existe.");
+		}
+		if(cliente == null) {
+			throw new Exception("ERROR: El cliente no existe.");
+		}
+		if(t.getCliente().getId() != cliente.getId()) {
+			throw new Exception("ERROR: El turno no le pertenece al cliente.");
+		}
+		
+		Disponibilidad nueva = null;
+		for(Disponibilidad d : t.getProfesional().getDisponibilidades()) {
+			if(d.getFecha().equals(fechaHora.toLocalDate()) && d.getHora().equals(fechaHora.toLocalTime())) {
+				nueva = d;
+			}
+		}
+		
+		if(nueva == null) {
+			throw new Exception("ERROR: El profesional no cuenta con esta disponibilidad.");
+		}
+		Disponibilidad anterior = DisponibilidadDao.getInstance().traer(t.getFechaHora().toLocalDate(), t.getFechaHora().toLocalTime(), t.getProfesional());
+		if(anterior.getId() == nueva.getId()) {
+			throw new Exception("ERROR: La nueva fecha y hora del turno es la misma que la anterior.");
+		}
+		if(!nueva.isDisponible()) {
+			throw new Exception("ERROR: La disponibilidad no se encuentra disponible.");
+		} 
+		nueva.setDisponible(false);	// Pasa a estar ocupada
+		DisponibilidadDao.getInstance().actualizar(nueva); 
+		
+		
+		anterior.setDisponible(true); // La anterior disponibilidad pasa a estar disponible
+		DisponibilidadDao.getInstance().actualizar(anterior);
+		
 		t.setFechaHora(fechaHora);
 		TurnoDao.getInstance().actualizar(t);
 	}
@@ -51,6 +85,25 @@ public class ClienteABM {
 	public void actualizarTurnos(Cliente cliente, Turno t) {
 		cliente.getTurnos().add(t);
 		ClienteDao.getInstance().actualizar(cliente);
+	}
+	
+	public void cancelarTurno(Cliente cliente, Turno turno) throws Exception{
+		if(turno == null) {
+			throw new Exception("ERROR: El turno no existe.");
+		}
+		if(cliente == null) {
+			throw new Exception("ERROR: El cliente no existe.");
+		}
+		if(turno.getCliente().getId() != cliente.getId()) {
+			throw new Exception("ERROR: El turno no le pertenece al cliente.");
+		}
+		Disponibilidad dispo = DisponibilidadDao.getInstance().traer(turno.getFechaHora().toLocalDate(), 
+				turno.getFechaHora().toLocalTime(), 
+				turno.getProfesional());;
+		dispo.setDisponible(true); // La disponibilidad pasa a estar disponible
+		DisponibilidadDao.getInstance().actualizar(dispo);;
+		ClienteDao.getInstance().cancelarTurno(turno);
+		
 	}
 
 }

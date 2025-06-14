@@ -50,23 +50,49 @@ public class ProfesionalABM {
 	}
 	
 	public void crearDisponibilidadesDesocupadas(LocalDate fechaDesde, LocalDate fechaHasta, LocalTime horaDesde, LocalTime horaHasta
-			,  Long duracion, Profesional p) {
+			,  Long duracion, Profesional p) throws Exception{
+		if(p==null) {
+			throw new Exception("ERROR: No existe el profesional");
+		}
+		if(fechaDesde.isAfter(fechaHasta)) {
+			throw new Exception("ERROR: La fecha de inicio no puede ser posterior a la fecha de fin");
+		}
+		if(fechaDesde.equals(fechaHasta) && horaDesde.isAfter(horaHasta)) {
+			throw new Exception("ERROR: La hora de inicio no puede ser posterior a la hora de fin en el mismo dia");
+		}
 		LocalDate fechaActual = fechaDesde;
+		int contDispCreadas = 0;
 		while(!fechaActual.isAfter(fechaHasta) ) {
 			LocalTime horaActual = horaDesde;
 			while(!horaActual.plusMinutes(duracion).isAfter(horaHasta)) {
-				Disponibilidad d = new Disponibilidad(fechaActual, horaActual, true, p);
-				p.getDisponibilidades().add(d);
-				DisponibilidadDao.getInstance().agregar(d);
+				LocalDate fechaAux = fechaActual;
+				LocalTime horaAux = horaActual;
+				boolean existe = p.getDisponibilidades().stream().anyMatch(d -> d.getFecha().equals(fechaAux) && d.getHora().equals(horaAux));
+				if(!existe) {
+					Disponibilidad d = new Disponibilidad(fechaActual, horaActual, true, p);
+					p.getDisponibilidades().add(d);
+					DisponibilidadDao.getInstance().agregar(d);
+					contDispCreadas++;
+				}
 				horaActual = horaActual.plusMinutes(duracion);
 			}
 			fechaActual = fechaActual.plusDays(1);
 		}
+		if(contDispCreadas == 0) {
+			throw new Exception("ERROR: No se han podido crear nuevas disponibilidades, ya existen todas las que se intentaron crear");
+		}
 		ProfesionalDao.getInstance().actualizar(p);
 	}
 
-	public List<Profesional> traerPorEspecialidad(Especialidad e){
-		return ProfesionalDao.getInstance().traerPorEspecialidad(e);
+	public List<Profesional> traerPorEspecialidad(Especialidad e) throws Exception {
+		if (e == null) {
+			throw new Exception("ERROR: No existe la especialidad");
+		}
+		List<Profesional> profesionales = ProfesionalDao.getInstance().traerPorEspecialidad(e);
+		if (profesionales == null || profesionales.isEmpty()) {
+			throw new Exception("ERROR: No hay profesionales asociados a esta especialidad");
+		}
+		return profesionales;
 	}
 	
 	public boolean turnoFecha(LocalDateTime fechaHora, Profesional profesional) {

@@ -95,7 +95,7 @@ public class ClienteDao {
 		return objeto;
 	}
 
-    public void pedirTurno(Cliente cliente, Turno turno) {
+  /*  public void pedirTurno(Cliente cliente, Turno turno) {
 
         iniciaOperacion();
         cliente.getTurnos().add(turno);
@@ -103,7 +103,7 @@ public class ClienteDao {
         session.getTransaction().commit();
 
     }
-
+*/
     public Turno traerTurno(int idCliente, int idTurno) {
         Turno turno = null;
         try {
@@ -117,5 +117,24 @@ public class ClienteDao {
             session.close();
         }
         return turno;
+    }
+    
+    public void cancelarTurno(Turno turno){
+    	try {
+    		iniciaOperacion();
+    		Turno turnoSession = (Turno) session.get(Turno.class, turno.getId());
+            Cliente cliente = turnoSession.getCliente();
+            if (cliente != null) {
+            	Hibernate.initialize(cliente.getTurnos());
+                cliente.getTurnos().remove(turnoSession);
+                session.update(cliente);
+            }
+            session.delete(turnoSession);
+            tx.commit();
+    	} catch (HibernateException he) {
+    		manejaExcepcion(he);
+    	} finally {
+    		session.close();
+    	}
     }
 }

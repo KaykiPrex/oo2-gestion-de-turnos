@@ -58,5 +58,9 @@ public class DisponibilidadABM {
 		}
     	return disponibilidades;
     }
+    
+    public Disponibilidad traer(LocalDate fecha, LocalTime hora, Profesional profesional) {
+    	return DisponibilidadDao.getInstance().traer(fecha, hora, profesional);
+    }
 
 }

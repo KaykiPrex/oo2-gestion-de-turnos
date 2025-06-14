@@ -2,7 +2,7 @@ package dao;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -79,6 +79,9 @@ public class TurnoDao {
         try {
             iniciaOperacion();
             objeto = (Turno) session.get(Turno.class, id);
+            if (objeto != null) {
+				Hibernate.initialize(objeto.getProfesional().getDisponibilidades());
+			}
         } finally {
             session.close();
         }
