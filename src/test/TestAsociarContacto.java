@@ -32,7 +32,7 @@ public class TestAsociarContacto {
 						", Contacto: " + profesional.getContacto().toString());
 			}
 		} catch (Exception e) {
-			System.out.println("Error al asociar contacto: + e.getMessage()");
+			System.out.println("Error al asociar contacto:" + e.getMessage());
 		}
 		
 	}

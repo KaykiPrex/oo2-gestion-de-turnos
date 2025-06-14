@@ -101,7 +101,6 @@ public class ProfesionalABM {
 			if (d.getFecha().equals(fechaHora.toLocalDate()) && 
 				d.getHora().equals(fechaHora.toLocalTime()) && 
 				d.isDisponible()) {
-				d.setDisponible(false);
 				DisponibilidadABM.getInstance().reservarDisponibilidad(d);
 				return true;
 			}

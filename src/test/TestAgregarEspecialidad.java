@@ -10,7 +10,7 @@ public class TestAgregarEspecialidad {
 		// Este test permite agregar una especialidad al sistema
 		// Dando como excepcion si ya existe una especialidad con el mismo nombre
 		
-		Especialidad e1 = new Especialidad("Cardiología");
+		Especialidad e1 = new Especialidad("Masajista");
 		EspecialidadABM especialidadABM = new EspecialidadABM();
 		
 		try {
