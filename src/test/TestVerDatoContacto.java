@@ -6,12 +6,12 @@ import negocio.PersonaABM;
 public class TestVerDatoContacto {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		// Este test permite ver la informacion de contacto de un cliente o profesional
-		
+		// Dando excepciones si la persona no existe o si no hay datos de contacto asociados a esa persona.
+		// Usar "Ana Torres" - "cliente1" para un Cliente existente
 		try {
-			Persona persona = PersonaABM.getInstance().login("Luca Lazarte", "12345678");
+			Persona persona = PersonaABM.getInstance().login("Ana Torres", "cliente1");
 			if (persona.getContacto() != null) {
 				System.out.println("Datos de contacto de " + persona.getNombre() + ":");
 				System.out.println("Email: " + persona.getContacto().getEmail());

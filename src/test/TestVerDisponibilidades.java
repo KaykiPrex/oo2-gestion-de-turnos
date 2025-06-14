@@ -13,9 +13,9 @@ public class TestVerDisponibilidades {
 		
 		try {
 			// Método para traer las disponibilidades de un profesional específico
-			// Usar "Eric Boedo" para un Profesional existente
+			// Usar "Dr. Pablo García" para un Profesional existente
 			// En caso de error, se captura la excepción y se muestra un mensaje
-			Profesional profesional = ProfesionalABM.getInstance().traer("Eric Boedo");
+			Profesional profesional = ProfesionalABM.getInstance().traer("Dr. Pablo García");
 			List<Disponibilidad> disponibilidades = DisponibilidadABM.getInstance().traerPosterior(profesional);
 			
 			for (Disponibilidad d : disponibilidades) {

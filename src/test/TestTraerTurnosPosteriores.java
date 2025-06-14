@@ -13,9 +13,9 @@ public class TestTraerTurnosPosteriores {
 		
 		try {
 			// Método para traer los turnos futuros de un cliente específico
-			// Usar "Luca Lazarte" para un Cliente existente
+			// Usar "Ana Torres" para un Cliente existente
 			// En caso de error, se captura la excepción y se muestra un mensaje
-			Cliente cliente = ClienteABM.getInstance().traer("Luca Lazarte");
+			Cliente cliente = ClienteABM.getInstance().traer("Ana Torres");
 			List<Turno> turnos = TurnoABM.getInstance().traerTurnosFuturos(cliente);
 			
 			for (Turno t : turnos) {
