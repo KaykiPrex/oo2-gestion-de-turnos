@@ -15,7 +15,9 @@ public class EspecialidadABM {
     }
 
     public long agregar(Especialidad e) throws Exception {
-        if (EspecialidadDao.getInstance().traer(e.getNombre()) != null) throw new Exception("Especialidad ya creada");
+        if (EspecialidadDao.getInstance().traer(e.getNombre()) != null) {
+        	throw new Exception("Especialidad ya creada");
+        }
         return EspecialidadDao.getInstance().agregar(e);
     }
 

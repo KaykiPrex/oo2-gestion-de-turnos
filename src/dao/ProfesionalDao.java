@@ -90,7 +90,9 @@ public class ProfesionalDao {
 			iniciaOperacion();
 			String hql = "from Profesional p where p.nombre = :nombre";
 			objeto = (Profesional) session.createQuery(hql).setParameter("nombre", nombre).uniqueResult();
-			Hibernate.initialize(objeto.getDisponibilidades());
+			if(objeto != null) {
+				Hibernate.initialize(objeto.getDisponibilidades());
+			}
 		} finally {
 			session.close();
 		}
