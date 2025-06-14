@@ -2,8 +2,8 @@ package dao;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -48,18 +48,6 @@ public class DisponibilidadDao {
         return objeto;
     }
 
-    public Set<Disponibilidad> traer(Profesional p) {
-        Set<Disponibilidad> lista = new HashSet<Disponibilidad>();
-        try {
-            iniciaOperacion();
-            Query<Disponibilidad> query = session.createQuery("from Disponibilidad d where d.profesional.id = :id", Disponibilidad.class).setParameter("id", p.getId());
-            lista.addAll(query.getResultList());
-        } finally {
-            session.close();
-        }
-        return lista;
-    }
-
     public int agregar(Disponibilidad objeto) {
         int id = 0;
         try {
@@ -101,8 +89,8 @@ public class DisponibilidadDao {
         }
     }
     
-    public Set<Disponibilidad> traerPosteriores (Profesional p) {
-        Set<Disponibilidad> lista = new HashSet<Disponibilidad>();
+    public List<Disponibilidad> traerPosteriores (Profesional p) {
+        List<Disponibilidad> lista = new ArrayList<Disponibilidad>();
         try {
             iniciaOperacion();
             LocalDate hoy = LocalDate.now();
@@ -110,7 +98,8 @@ public class DisponibilidadDao {
             Query<Disponibilidad> query = session.createQuery(
             		"from Disponibilidad d " +
             		"where d.profesional.id = :id " +
-            		"and (d.fecha > :hoy or (d.fecha = :hoy and d.hora >= :ahora))",
+            		"and (d.fecha > :hoy or (d.fecha = :hoy and d.hora >= :ahora))" +
+            		"order by d.fecha, d.hora asc",
             		Disponibilidad.class
             );
             query.setParameter("id", p.getId());

@@ -1,6 +1,6 @@
 package test;
 
-import java.util.Set;
+import java.util.List;
 
 import datos.Disponibilidad;
 import datos.Profesional;
@@ -14,7 +14,7 @@ public class TestVerDisponibilidades {
 		try {
 			
 			Profesional profesional = ProfesionalABM.getInstance().traer("Eric Boedo");
-			Set<Disponibilidad> disponibilidades = DisponibilidadABM.getInstance().traerPosterior(profesional);
+			List<Disponibilidad> disponibilidades = DisponibilidadABM.getInstance().traerPosterior(profesional);
 			
 			for (Disponibilidad d : disponibilidades) {
 				System.out.println(d.toString());
