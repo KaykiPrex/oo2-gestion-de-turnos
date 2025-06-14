@@ -2,11 +2,13 @@ package negocio;
 
 import dao.TurnoDao;
 import datos.Cliente;
+import datos.Persona;
 import datos.Profesional;
 import datos.Servicio;
 import datos.Turno;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class TurnoABM {
 
@@ -60,5 +62,26 @@ public class TurnoABM {
 		TurnoDao.getInstance().actualizar(objeto);
 	}
 
+	public List<Turno> traerTurnosFuturos(Cliente cliente) throws Exception {
+    	List<Turno> turnos = TurnoDao.getInstance().traerPosteriores(cliente);
+    	if (cliente == null) {
+    		throw new Exception("Error: El cliente no puede ser nulo.");
+    	}
+    	if (turnos.isEmpty()) {
+			throw new Exception("No hay turnos para el cliente: " + cliente.getNombre());
+		}
+    	return turnos;
+	}
+	
+	public Turno traerTurnoPorFecha(LocalDateTime fecha, Persona persona) throws Exception {
+		if (fecha == null || persona == null) {
+			throw new Exception("ERROR: Fecha y cliente no pueden ser nulos.");
+		}
+		Turno turno = TurnoDao.getInstance().traerPorFechaHora(fecha, persona);
+		if (turno == null) {
+			throw new Exception("No se encontró un turno para la fecha y cliente especificados.");
+		}
+		return turno;
+	}
 
 }

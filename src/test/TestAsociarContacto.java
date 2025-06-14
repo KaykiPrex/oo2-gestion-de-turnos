@@ -11,6 +11,10 @@ public class TestAsociarContacto {
 	public static void main(String[] args) {
 		
 		try {
+			// Método para asociar un contacto a un cliente o profesional existente
+			// Usar "Luca Lazarte" y "12345678" para un Cliente existente
+			// o "Eric Boedo" y "87654321" para un Profesional existente
+			// En caso de error, se captura la excepción y se muestra un mensaje
 			Persona persona = PersonaABM.getInstance().login("Luca Lazarte", "12345678");
 			
 			Contacto nuevoContacto = new Contacto("luca.lazarte05@gmail.com", "12345678",
