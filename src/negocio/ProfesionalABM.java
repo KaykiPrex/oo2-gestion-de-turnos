@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
-import java.util.Set;
-
 
 import dao.DisponibilidadDao;
 import dao.ProfesionalDao;
@@ -46,24 +44,25 @@ public class ProfesionalABM {
 		return ProfesionalDao.getInstance().traer(nombre);
 	}
 	
-	public Set<Disponibilidad> verDisponibilidad(Profesional p) {
-		Set<Disponibilidad> list = DisponibilidadDao.getInstance().traer(p);
+	public List<Disponibilidad> verDisponibilidad(Profesional p) {
+		List<Disponibilidad> list = DisponibilidadDao.getInstance().traerPosteriores(p);
 		return list;
 	}
 	
 	public void crearDisponibilidadesDesocupadas(LocalDate fechaDesde, LocalDate fechaHasta, LocalTime horaDesde, LocalTime horaHasta
 			,  Long duracion, Profesional p) {
-		LocalTime horaActual = horaDesde;
 		LocalDate fechaActual = fechaDesde;
 		while(!fechaActual.isAfter(fechaHasta) ) {
+			LocalTime horaActual = horaDesde;
 			while(!horaActual.plusMinutes(duracion).isAfter(horaHasta)) {
 				Disponibilidad d = new Disponibilidad(fechaActual, horaActual, true, p);
+				p.getDisponibilidades().add(d);
 				DisponibilidadDao.getInstance().agregar(d);
-				ProfesionalDao.getInstance().actualizar(p);
 				horaActual = horaActual.plusMinutes(duracion);
 			}
 			fechaActual = fechaActual.plusDays(1);
 		}
+		ProfesionalDao.getInstance().actualizar(p);
 	}
 
 	public List<Profesional> traerPorEspecialidad(Especialidad e){
@@ -71,7 +70,7 @@ public class ProfesionalABM {
 	}
 	
 	public boolean turnoFecha(LocalDateTime fechaHora, Profesional profesional) {
-		Set<Disponibilidad> disponibilidades = verDisponibilidad(profesional);
+		List<Disponibilidad> disponibilidades = verDisponibilidad(profesional);
 		for (Disponibilidad d : disponibilidades) {
 			if (d.getFecha().equals(fechaHora.toLocalDate()) && 
 				d.getHora().equals(fechaHora.toLocalTime()) && 
