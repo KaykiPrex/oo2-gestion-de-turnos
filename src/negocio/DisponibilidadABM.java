@@ -48,10 +48,13 @@ public class DisponibilidadABM {
         DisponibilidadDao.getInstance().actualizar(d);
     }
     
-    public List<Disponibilidad> traerPosterior(Profesional p) throws Exception{
-    	List<Disponibilidad> disponibilidades = DisponibilidadDao.getInstance().traerPosteriores(p);
+    public List<Disponibilidad> traerPosterior(Profesional profesional) throws Exception{
+    	List<Disponibilidad> disponibilidades = DisponibilidadDao.getInstance().traerPosteriores(profesional);
+    	if (profesional == null) {
+    		throw new Exception("Error: El profesional no puede ser nulo.");
+    	}
     	if (disponibilidades.isEmpty()) {
-			throw new Exception("No hay disponibilidades para el profeisonal: " + p.getNombre());
+			throw new Exception("No hay disponibilidades para el profesional: " + profesional.getNombre());
 		}
     	return disponibilidades;
     }

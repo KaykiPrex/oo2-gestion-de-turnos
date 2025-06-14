@@ -1,9 +1,16 @@
 package dao;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
+import datos.Cliente;
+import datos.Persona;
+import datos.Profesional;
 import datos.Turno;
 
 public class TurnoDao {
@@ -90,4 +97,53 @@ public class TurnoDao {
             session.close();
         }
     }
+    
+    public List<Turno> traerPosteriores(Cliente cliente) {
+    	List<Turno> turnos = null;
+    	try {
+    		iniciaOperacion();
+    		LocalDateTime ahora = LocalDateTime.now();
+    		Query<Turno> query = session.createQuery(
+    				"from Turno t " +
+    				"where t.cliente = :cliente " +
+    				"and t.fechaHora > :ahora " +
+    				"order by t.fechaHora asc"
+    				, Turno.class
+    		);
+    		query.setParameter("cliente", cliente);
+    		query.setParameter("ahora", ahora);
+    		turnos = query.list();
+    	} finally {
+    		session.close();
+    	}
+    	return turnos;
+    }
+    
+    public Turno traerPorFechaHora(LocalDateTime fechaHora, Persona persona) {
+    	Turno turno = null;
+    	try {
+    		iniciaOperacion();
+    		Query<Turno> query = null;
+    		if (persona instanceof Cliente) {
+    			query = session.createQuery (
+    					"from Turno t where t.fechaHora = :fechaHora " +
+    					"and t.cliente = :persona", Turno.class
+    			);
+    		} else if (persona instanceof Profesional) {
+    			query = session.createQuery (
+						"from Turno t where t.fechaHora = :fechaHora " +
+						"and t.profesional = :persona", Turno.class
+				);
+			} else {
+				throw new IllegalArgumentException("Tipo de persona no soportado");
+			}
+    		query.setParameter("fechaHora", fechaHora);
+			query.setParameter("persona", persona);
+			turno = query.uniqueResult();
+    	} finally {
+    		session.close();
+    	}
+    	return turno;
+    }
+    
 }

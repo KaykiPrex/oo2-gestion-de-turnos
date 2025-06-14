@@ -18,16 +18,16 @@ public class PersonaABM {
         return instancia;
     }
 
-    public Persona traer(long idPersona) {
-        return PersonaDao.getInstance().traer(idPersona);
-    }
-
     public Persona traerProfesional(long idProfesional) {
         return PersonaDao.getInstance().traerProfesionalDisponibilidadesYEspecialidad(idProfesional);
     }
 
     public List<Persona> traer() {
         return PersonaDao.getInstance().traer();
+    }
+
+    public Persona traer(String nombre) {
+        return PersonaDao.getInstance().traer(nombre);
     }
     
     // ** Método genérico para registrar una Persona (Cliente o Profesional) **
