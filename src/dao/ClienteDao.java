@@ -6,13 +6,18 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class ClienteDao {
     private static Session session;
     private Transaction tx;
 
+
     private void iniciaOperacion() throws HibernateException {
-        session = HibernateUtil.getSessionFactory().openSession();
-        tx = session.beginTransaction();
+        session= HibernateUtil.getSessionFactory().openSession();
+        tx = session.beginTransaction() ;
     }
 
     private void manejaExcepcion(HibernateException he) throws HibernateException {
@@ -67,39 +72,57 @@ public class ClienteDao {
         }
         return objeto;
     }
-
     public void pedirTurno(Cliente cliente, Turno turno) {
-
         iniciaOperacion();
-        cliente.getTurnos().add(turno);
-        session.update(cliente);
-        session.getTransaction().commit();
 
-    }
-
-
-    public void cancelarTurno(Turno turno) throws HibernateException {
-        try {
-            iniciaOperacion();
-            Turno turnoaux = (Turno) session.get(Turno.class, turno.getId());
-            if (turno == null) {
-                throw new RuntimeException("Turno no encontrado");
-            }
-
-            Cliente cliente = turno.getCliente();
-            if (cliente != null) {
-                cliente.getTurnos().remove(turno);// se lo borra al cliente
-                session.update(cliente);
-
-            }
-            session.delete(turno);// lo borra de la db
-            session.getTransaction().commit();
-        } catch (HibernateException e) {
-            manejaExcepcion(e);
+        if (!session.contains(cliente)) {
+            session.saveOrUpdate(cliente);
         }
+        session.flush();
+        Cliente clientePersistido = session.get(Cliente.class, cliente.getIdpersona());
+        if (clientePersistido == null) {
+            System.out.println("Cliente no encontrado en la BD. ID: " + cliente.getIdpersona());
+        }
+        session.flush();
 
+        try {
+            session.save(turno);
+
+            cliente.getTurnos().add(turno);
+            session.save(cliente);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            if (session.isOpen()) {
+                session.close();
+            }
+        }
     }
+    public void cancelarTurno(Turno turno) throws HibernateException {
+        iniciaOperacion();
+        Cliente cliente = turno.getCliente();
+        try {
 
+            if (cliente != null) {
+                cliente.getTurnos().remove(turno);
+                session.delete(turno);
+                tx.commit();
+            }
+        } catch (HibernateException e) {
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+            manejaExcepcion(e);
+        } finally {
+            if (session.isOpen()) {
+                session.close();
+            }
+        }
+    }
     public Turno traerTurno(int idCliente, int idTurno) {
         Turno turno = null;
         try {
@@ -113,5 +136,34 @@ public class ClienteDao {
             session.close();
         }
         return turno;
+    }
+    public List<Turno> obtenerHistorialTurnos(Cliente cliente) {
+        List<Turno> historialTurnos = new ArrayList<>();
+        iniciaOperacion();
+
+        if (cliente.getIdpersona() ==0) {
+            session.save(cliente);
+        }
+
+
+        try {
+            historialTurnos = session.createQuery(
+                            "FROM Turno t WHERE t.cliente = :cliente ORDER BY t.fechaHora", Turno.class)
+                    .setParameter("cliente", cliente)
+                    .getResultList();
+
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            if (session.isOpen()) {
+                session.close();
+            }
+        }
+
+        return historialTurnos;
     }
 }

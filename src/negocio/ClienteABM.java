@@ -21,7 +21,7 @@ public class ClienteABM {
 		TurnoDao turnoDao = new TurnoDao();
 		Turno t = turnoDao.traer(idTurno);
 
-		if(t.getCliente().getId()!=cliente.getId()) throw new Exception("ERROR Este turno no le pertenece al cliente que quiere modificarlo");
+		if(t.getCliente().getIdpersona()!=cliente.getIdpersona()) throw new Exception("ERROR Este turno no le pertenece al cliente que quiere modificarlo");
 
 		t.setFechaHora(fechaHora);
 		turnoDao.actualizar(t);

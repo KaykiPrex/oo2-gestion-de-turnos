@@ -40,7 +40,7 @@ public class DisponibilidadDao {
         Set<Disponibilidad> lista = new HashSet<Disponibilidad>();
         try {
             iniciaOperacion();
-            Query<Disponibilidad> query = session.createQuery("from Disponibilidad d where d.profesional.id = :id", Disponibilidad.class).setParameter("id", p.getId());
+            Query<Disponibilidad> query = session.createQuery("from Disponibilidad d where d.profesional.id = :id", Disponibilidad.class).setParameter("id", p.getIdpersona());
             lista.addAll(query.getResultList());
         } finally {
             session.close();

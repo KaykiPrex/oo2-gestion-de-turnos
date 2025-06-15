@@ -1,7 +1,7 @@
 package datos;
 
 public class Persona {
-    private long id;
+    private long idpersona;
     private String nombre;
     private String contrasena;
     private Contacto contacto;
@@ -15,12 +15,12 @@ public class Persona {
         this.contacto = contacto;
     }
 
-    public long getId() {
-        return id;
+    public long getIdpersona() {
+        return idpersona;
     }
 
-    protected void setId(long id) {
-        this.id = id;
+    protected void setIdpersona(long id) {
+        this.idpersona = id;
     }
 
     public String getNombre() {
@@ -49,7 +49,7 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Persona [id=" + id + ", nombre=" + nombre + ", contrasena=" + contrasena + ", contacto=" + contacto + "]";
+        return "Persona [id=" + idpersona + ", nombre=" + nombre + ", contrasena=" + contrasena + ", contacto=" + contacto + "]";
     }
 
 }

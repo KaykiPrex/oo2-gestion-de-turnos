@@ -3,7 +3,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="datos.Persona" table="persona">
-        <id name="id" column="idpersona">
+        <id name="idpersona" column="idpersona">
             <generator class="identity"/>
         </id>
         <property name="nombre" column="nombre" type="string"/>
@@ -20,7 +20,7 @@
             </set>
         </joined-subclass>
 
-        <joined-subclass name="datos.Cliente" table="cliente">
+        <joined-subclass name="datos.Cliente" table="cliente" >
             <key column="idpersona"/>
             <list name="turnos" table="turnos" inverse="true" lazy="true" fetch="select">
                 <key column="id" not-null="true"/>
