@@ -1,0 +1,17 @@
+<hibernate-mapping>
+    <class name="datos.refactor.ProfessionalService" table="professional_service">
+        <id name="id" column="id">
+            <generator class="increment"/>
+        </id>
+        <property name="price" column="price"/>
+        <property name="initWorkHour" column="init_work_hour"/>
+        <property name="endWorkHour" column="end_work_hour"/>
+        <property name="workDays" column="work_days"/>
+        <many-to-one name="professional" class="datos.refactor.User" column="professional_id"/>
+        <many-to-one name="service" class="datos.refactor.Service" column="service_id"/>
+        <set name="appointments" inverse="true" cascade="all">
+            <key column="professional_service_id"/>
+            <one-to-many class="datos.refactor.Appointment"/>
+        </set>
+    </class>
+</hibernate-mapping>

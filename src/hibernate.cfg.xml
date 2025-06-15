@@ -1,20 +1,21 @@
 <hibernate-configuration>
     <session-factory>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost/db_turnos2?serverTimezone=America/Argentina/Buenos_Aires</property>
+        <property name="connection.url">jdbc:mysql://localhost/db_turnos_recuperacion?serverTimezone=America/Argentina/Buenos_Aires</property>
         <property name="connection.username">root</property>
-        <property name="connection.password">1234</property>
+        <property name="connection.password">root</property>
         <property name="connection.pool_size">1</property>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">false</property>
         <!--  en true muestra hql en consola -->
         <!-- Mapeo Entidades -->
-        <mapping resource="mapeos/Contacto.hbm.xml"/>
-        <mapping resource="mapeos/Disponibilidad.hbm.xml"/>
-        <mapping resource="mapeos/Especialidad.hbm.xml"/>
-        <mapping resource="mapeos/Persona.hbm.xml"/>
-        <mapping resource="mapeos/Turno.hbm.xml"/>
-        <mapping resource="mapeos/Servicio.hbm.xml"/>
-
+        <mapping resource="mapeos/User.hbm.xml"/>
+        <mapping resource="mapeos/Appointment.hbm.xml"/>
+        <mapping resource="mapeos/Contact.hbm.xml"/>
+        <mapping resource="mapeos/Category.hbm.xml"/>
+        <mapping resource="mapeos/Specialty.hbm.xml"/>
+        <mapping resource="mapeos/Service.hbm.xml"/>
+        <mapping resource="mapeos/ProfessionalService.hbm.xml"/>
+        <mapping resource="mapeos/ProfessionalSpecialty.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

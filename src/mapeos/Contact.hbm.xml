@@ -1,0 +1,12 @@
+<hibernate-mapping>
+    <class name="datos.refactor.Contact" table="contact">
+        <id name="id" column="id">
+            <generator class="increment"/>
+        </id>
+        <property name="workEmail" column="work_email"/>
+        <property name="personalEmail" column="personal_email"/>
+        <property name="phone" column="phone"/>
+        <property name="mobile" column="mobile"/>
+        <one-to-one name="user" class="datos.refactor.User" constrained="true"/>
+    </class>
+</hibernate-mapping>

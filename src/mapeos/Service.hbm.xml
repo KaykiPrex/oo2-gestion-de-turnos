@@ -1,0 +1,15 @@
+<hibernate-mapping>
+    <class name="datos.refactor.Service" table="service">
+        <id name="id" column="id">
+            <generator class="increment"/>
+        </id>
+        <property name="name" column="name"/>
+        <property name="description" column="description"/>
+        <property name="duration" column="duration"/>
+        <many-to-one name="specialty" class="datos.refactor.Specialty" column="specialty_id"/>
+        <set name="professionalServices" inverse="true" cascade="all">
+            <key column="service_id"/>
+            <one-to-many class="datos.refactor.ProfessionalService"/>
+        </set>
+    </class>
+</hibernate-mapping>
