@@ -66,4 +66,25 @@ public class UserDao {
             throw new HibernateException("Error al eliminar usuario", he);
         }
     }
+    public User login(String nombre, String contrasena) {
+
+        User objeto = null;
+        Transaction tx = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        tx = session.beginTransaction();
+
+        try{
+            tx.commit();
+            String hql = "from User u where u.name = :nombre and u.password = :contrasena";
+            objeto = (User) session.createQuery(hql)
+                    .setParameter("nombre", nombre)
+                    .setParameter("contrasena", contrasena)
+                    .uniqueResult();
+        }   catch (HibernateException he) {
+            if (tx != null) tx.rollback();
+        } finally {
+            session.close();
+        }
+        return objeto;
+    }
 }

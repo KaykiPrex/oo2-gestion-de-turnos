@@ -1,6 +1,7 @@
 package negocio;
 
 import dao.UserDao;
+import datos.refactor.Contact;
 import datos.refactor.User;
 
 public class UserABM {
@@ -18,6 +19,15 @@ public class UserABM {
         User u = dao.traerUserContacto(id);
         dao.eliminar(u);
     }
+    public boolean login(String user, String pass){
+        if(dao.login(user, pass)== null){
+            return false;
+        }
+        return true;
+
+    }
+
+
 
     public User traer(int id){
         return dao.traer(id);
