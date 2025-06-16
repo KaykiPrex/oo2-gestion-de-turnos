@@ -22,4 +22,8 @@ public class ProfessionalServiceABM {
     public ProfessionalService traer(int id){
         return dao.traer(id);
     }
+
+    public ProfessionalService traerProfesionalServicioYTurno(int id) {
+        return dao.traerProfesionalServicioYTurno(id);
+    }
 }

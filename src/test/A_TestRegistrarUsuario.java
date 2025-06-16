@@ -6,7 +6,7 @@ import negocio.UserABM;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestRegistrarUsuario {
+public class A_TestRegistrarUsuario {
 
     public static void main(String[] args) {
         // Registro de Cliente
@@ -18,7 +18,7 @@ public class TestRegistrarUsuario {
         Contact newContact = new Contact("alfredo.perez@gmail.com","sonic@gmail.com","1550001212","42908080",newClient);
         newClient.setContact(newContact);
         int userClientId = abmUser.agregar(newClient);
-        Client userClient =(Client) abmUser.traer(userClientId);
+        Client userClient = (Client) abmUser.traer(userClientId);
 
         System.out.println("Cliente registrado");
         System.out.println(userClient);

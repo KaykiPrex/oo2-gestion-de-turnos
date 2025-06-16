@@ -56,11 +56,11 @@ public class ServiceDao {
 
     public Service traerServiciosDeProfesional(int id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("FROM Service s JOIN FETCH s.professionalServices ps JOIN FETCH ps.professional WHERE s.id = :id", Service.class)
+            return session.createQuery("FROM Service s LEFT JOIN FETCH s.professionalServices ps LEFT JOIN FETCH ps.professional WHERE s.id = :id", Service.class)
                     .setParameter("id", id)
                     .uniqueResult();
         } catch (HibernateException he) {
-            throw new HibernateException("Error al obtener Categoria", he);
+            throw new HibernateException("Error al obtener Servicio", he);
         }
     }
 }

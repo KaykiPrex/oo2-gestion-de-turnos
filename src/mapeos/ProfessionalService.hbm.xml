@@ -7,7 +7,7 @@
         <property name="initWorkHour" column="init_work_hour"/>
         <property name="endWorkHour" column="end_work_hour"/>
         <property name="workDays" column="work_days"/>
-        <many-to-one name="professional" class="datos.refactor.User" column="professional_id"/>
+        <many-to-one name="professional" class="datos.refactor.Professional" column="professional_id"/>
         <many-to-one name="service" class="datos.refactor.Service" column="service_id"/>
         <set name="appointments" inverse="true" cascade="all">
             <key column="professional_service_id"/>

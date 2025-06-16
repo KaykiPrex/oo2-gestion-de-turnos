@@ -3,6 +3,7 @@ package datos.refactor;
 import java.math.BigDecimal;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Set;
 
 public class ProfessionalService {
     private int id;
@@ -12,7 +13,7 @@ public class ProfessionalService {
     private LocalTime initWorkHour;
     private LocalTime endWorkHour;
     private String workDays;
-    private List<Appointment> appointments;
+    private Set<Appointment> appointments;
 
     public ProfessionalService() {
     }
@@ -79,11 +80,11 @@ public class ProfessionalService {
         this.workDays = workDays;
     }
 
-    public List<Appointment> getAppointments() {
+    public Set<Appointment> getAppointments() {
         return appointments;
     }
 
-    public void setAppointments(List<Appointment> appointments) {
+    public void setAppointments(Set<Appointment> appointments) {
         this.appointments = appointments;
     }
 }

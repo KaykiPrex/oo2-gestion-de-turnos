@@ -1,6 +1,7 @@
 package dao;
 
 import datos.refactor.ProfessionalService;
+import datos.refactor.Service;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -21,7 +22,7 @@ public class ProfessionalServiceDao {
         return id;
     }
 
-    public ProfessionalService traer(long id) {
+    public ProfessionalService traer(int id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.get(ProfessionalService.class, id);
         } catch (HibernateException he) {
@@ -50,6 +51,16 @@ public class ProfessionalServiceDao {
         } catch (HibernateException he) {
             if (tx != null) tx.rollback();
             throw new HibernateException("Error al eliminar Servicio del profesional", he);
+        }
+    }
+
+    public ProfessionalService traerProfesionalServicioYTurno(int id) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery("FROM ProfessionalService p LEFT JOIN FETCH p.appointments WHERE p.id = :id", ProfessionalService.class)
+                    .setParameter("id", id)
+                    .uniqueResult();
+        } catch (HibernateException he) {
+            throw new HibernateException("Error al obtener Servicio", he);
         }
     }
 }
